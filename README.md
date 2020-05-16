@@ -20,46 +20,47 @@ If you have installed the app online and your are the developer you can save the
 
 Usefull to Manage Your
 
-Own Data personal and multimedia (photo, video, audio)
-Members
-Labels
-Products
-Services
-Connect with others local circles
-Make easly local commerce
-Open your web radio
-Own website
-...
+    Own personal Data and multimedia (photo, video, audio)
+    Members
+    Labels
+    Products
+    Services
+    Connect with others local circles
+    Make easly local commerce
+    Open your web radio
+    Own website
+    ...
+
 
 Core inside
 
-Intelligent Login Logout with remember me and limit of connection time
-Blacklist if max three attempts fails, login, signup, contact
-Reception scripts, sign up, lost password, change email or password with limit of process time
-Double Authentication
-Limit Age
-Captcha
-Scripts Anti Hack
-Demand Secure Password or/and Email
-Blacklist Pseudo and email
-Banned Words
-Personal Secure and Private Space
-Languages Handler and manage country
-Personal PHP function you need
-Free Geolocation until 1000 requests/day
-General Stats and charts
-Intelligenza App
-SEO and Responsive Friendly
-Develop and Add all modules you need
-Limit access to App (back office)
-Framework Audio SoundManager 2 integrate
-Files Sharing
-PHP PDF CLASS
-Notifications
-Block Right Clic and Selection
-Active Accept Cookies
-Personal Algorithm to crypted infos in DB
-Cron Tasks
-Backups
-...
+    Intelligent Login Logout with remember me and limit of connection time
+    Blacklist if max three attempts fails, login, signup, contact
+    Reception scripts, sign up, lost password, change email or password with limit of process time
+    Double Authentication
+    Limit Age
+    Captcha
+    Scripts Anti Hack
+    Demand Secure Password or/and Email
+    Blacklist Pseudo and email
+    Banned Words
+    Personal Secure and Private Space
+    Languages Handler and manage country
+    Personal PHP function you need
+    Free Geolocation until 1000 requests/day
+    General Stats and charts
+    Intelligenza App
+    SEO and Responsive Friendly
+    Develop and Add all modules you need
+    Limit access to App (back office)
+    Framework Audio SoundManager 2 integrate
+    Files Sharing
+    PHP PDF CLASS
+    Notifications
+    Block Right Clic and Selection
+    Active Accept Cookies
+    Personal Algorithm to crypted infos in DB
+    Cron Tasks
+    Backups
+    ...
 
