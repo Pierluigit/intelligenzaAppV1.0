@@ -1,0 +1,2 @@
+# intelligenzaAppV1.0
+ 

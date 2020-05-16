@@ -1,0 +1,11 @@
+# redirected page not found
+ErrorDocument 404 /https://www.mysite/404.php
+ErrorDocument 403 /https://www.mysite/404.php
+
+# URLs rewritten
+Options +FollowSymlinks
+
+RewriteEngine On
+# redirect to www if not provided
+RewriteCond %{HTTP_HOST} ^www.mysite.ch
+RewriteRule (.*) https://mysite.ch%{REQUEST_URI} [R=301,L]
