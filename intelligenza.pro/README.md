@@ -1,2 +1,0 @@
-# intelligenza.pro
- intelligenza App
