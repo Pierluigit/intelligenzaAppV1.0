@@ -162,8 +162,8 @@
 				<li <?php if($page=="app_admin_members") {?>class="active"<?php }?>><a href="appMembers.php">Members</a></li>
 				<li <?php if($page=="app_admin_appSettings") {?>class="active"<?php }?>><a href="appSettings.php">App Settings</a></li>
 				<li <?php if($page=="app_admin_languages") {?>class="active"<?php }?>><a href="appLanguages.php">Languages</a></li>
-				<li <?php if($page=="app_modular") {?>class="active"<?php }?>><a href="appModular.php">Modular</a></li>
-				<li <?php if($page=="app_admin_noty") {?>class="active"<?php }?>><a href="appNoty.php">Notifications</a></li>
+				<li <?php if($page=="app_admin_modular") {?>class="active"<?php }?>><a href="appModular.php">Modular</a></li>
+				<li <?php if($page=="app_admin_appNoty") {?>class="active"<?php }?>><a href="appNoty.php">Notifications</a></li>
 				<li <?php if($page=="app_admin_backups") {?>class="active"<?php }?>><a href="appBackups.php">Backups</a></li>
 				<li class="divider"></li>
 				<li <?php if($page=="app_admin_frontEnd") {?>class="active"<?php }?>><a href="appFrontEnd.php">Front End</a></li>

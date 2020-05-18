@@ -73,16 +73,7 @@
 	.table-profile th {
 		color: white !important;
 	}
-	
 	body {
-		<?php if(strstr($page, 'app_')) {?>
-		background: url('../images/bg/intelligenza/bgApp.jpg');
-		background-size: 100%;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-position: center center;
-		<?php }?>
-		
 		background-color: #0F0F0F;
 		color: white;
 	
@@ -279,11 +270,7 @@
 		border-radius: 14px;
 		padding: 14px;
 	}
-	.bgBoxApp {
-		background-color: rgba(0,0,0,0.8);
-		/*border-radius: 14px;*/
-		/*padding: 14px;*/
-	}
+	
 	/* write your styles */
 	.green {
 		color: green;
@@ -341,16 +328,15 @@
 		if($smartPhone!="yes2") {?>
 			<?php 
 			if($app_bgRegister=="") {?>
-			background: url('admin/assets/img/intel_register.jpg');
+			background: url('admin/assets/img/register-cover.jpg');
 			<?php }else {
 			// if existe
 			if(file_exists('images/bg/'.$app_bgRegister)) {?>
 			background: url('images/bg/<?php echo($app_bgRegister);?>');
 			<?php }else {?>
-			background: url('admin/assets/img/intel_register.jpg');
+			background: url('admin/assets/img/register-cover.jpg');
 			<?php }
 			}?>
-		
 			background-size: 100%;
 			background-repeat: no-repeat;
 			background-attachment: fixed;
@@ -377,13 +363,13 @@
 		if($smartPhone!="yes2") {?>
 			<?php 
 			if($app_bgLogin=="") {?>
-			background: url('admin/assets/img/intel_login.jpg');
+			background: url('admin/assets/img/login-cover.jpg');
 			<?php }else {
 			// if existe
 			if(file_exists('images/bg/'.$app_bgLogin)) {?>
 			background: url('images/bg/<?php echo($app_bgLogin);?>');
 			<?php }else {?>
-			background: url('admin/assets/img/intel_login.jpg');
+			background: url('admin/assets/img/login-cover.jpg');
 			<?php }
 			}?>
 			background-size: 100%;
@@ -432,13 +418,13 @@
 	.privacy-cover {/*1920x2880*/
 		<?php 
 		if($app_bgPrivacy=="") {?>
-		background: url('admin/assets/img/intel_privacy.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }else {
 		// if existe
 		if(file_exists('images/bg/'.$app_bgPrivacy)) {?>
 		background: url('images/bg/<?php echo($app_bgPrivacy);?>');
 		<?php }else {?>
-		background: url('admin/assets/img/intel_privacy.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }
 		}?>
 		background-size: 100%;
@@ -459,13 +445,13 @@
 	.terms-cover {/*1920x2880*/
 		<?php 
 		if($app_bgTerms=="") {?>
-		background: url('admin/assets/img/intel_terms.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }else {
 		// if existe
 		if(file_exists('images/bg/'.$app_bgTerms)) {?>
 		background: url('images/bg/<?php echo($app_bgTerms);?>');
 		<?php }else {?>
-		background: url('admin/assets/img/intel_terms.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }
 		}?>
 		background-size: 100%;
@@ -486,13 +472,13 @@
 	.airlock-cover {/*1920x2880*/
 		<?php 
 		if($app_bgAirlock=="") {?>
-		background: url('admin/assets/img/intel_airlock.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }else {
 		// if existe
 		if(file_exists('images/bg/'.$app_bgAirlock)) {?>
 		background: url('images/bg/<?php echo($app_bgAirlock);?>');
 		<?php }else {?>
-		background: url('admin/assets/img/intel_airlock.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }
 		}?>
 		background-size: 100%;
@@ -513,13 +499,13 @@
 	.lostPass-cover {/*1920x2880*/
 		<?php 
 		if($app_bgLostPass=="") {?>
-		background: url('admin/assets/img/intel_lostPass.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }else {
 		// if existe
 		if(file_exists('images/bg/'.$app_bgLostPass)) {?>
 		background: url('images/bg/<?php echo($app_bgLostPass);?>');
 		<?php }else {?>
-		background: url('admin/assets/img/intel_lostPass.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }
 		}?>
 		background-size: 100%;
@@ -547,13 +533,13 @@
 		
 		<?php 
 		if($app_bgComingSoon=="") {?>
-		background: url('admin/assets/img/intel_comingSoon.jpg');
+		background: url('admin/assets/img/coming-soon-cover.jpg');
 		<?php }else {
 		// if existe
 		if(file_exists('images/bg/'.$app_bgComingSoon)) {?>
 		background: url('images/bg/<?php echo($app_bgComingSoon);?>');
 		<?php }else {?>
-		background: url('admin/assets/img/intel_comingSoon.jpg');
+		background: url('admin/assets/img/coming-soon-cover.jpg');
 		<?php }
 		}?>
 		background-position: top center;
@@ -568,13 +554,13 @@
 	.contact-cover {/*1920x1280*/
 		<?php 
 		if($app_bgContact=="") {?>
-		background: url('admin/assets/img/intel_contact.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }else {
 		// if existe
 		if(file_exists('images/bg/'.$app_bgContact)) {?>
 		background: url('images/bg/<?php echo($app_bgContact);?>');
 		<?php }else {?>
-		background: url('admin/assets/img/intel_contact.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }
 		}?>
 		background-size: 100%;
@@ -595,13 +581,13 @@
 	.faq-cover {/*1920x1280*/
 		<?php 
 		if($app_bgContact=="") {?>
-		background: url('admin/assets/img/intel_faq.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }else {
 		// if existe
 		if(file_exists('images/bg/'.$app_bgFaq)) {?>
 		background: url('images/bg/<?php echo($app_bgFaq);?>');
 		<?php }else {?>
-		background: url('admin/assets/img/intel_faq.jpg');
+		background: url('admin/assets/img/register-cover.jpg');
 		<?php }
 		}?>
 		background-size: 100%;

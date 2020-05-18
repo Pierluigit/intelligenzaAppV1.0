@@ -74,7 +74,7 @@ define ('PDF_HEADER_LOGO', 'logo_pdf.png');
 /**
  * Header logo image width in user units.
  */
-define ('PDF_HEADER_LOGO_WIDTH', 55);
+define ('PDF_HEADER_LOGO_WIDTH', 30);
 
 /**
  * Cache directory for temporary files (full path).

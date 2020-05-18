@@ -93,7 +93,7 @@ require_once("scripts/inc.core.get.valueAppSettings.php");
 		<!-- END #sidebar -->
 		
 		<!-- BEGIN #content -->
-		<div id="content" class="content bgBoxApp">
+		<div id="content" class="content">
 			<!-- BEGIN breadcrumb -->
 			<ul class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.php">Home</a></li>

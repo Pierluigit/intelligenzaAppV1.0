@@ -3,7 +3,7 @@
 /////// Alpha Project version 1.0 /////////
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-// Title: App Modular
+// Title: Basic Template
 // Data Juggler: Pierluigi
 // Support: intelligenza@protonmail.com
 // Date: April 2020
@@ -40,7 +40,7 @@
 // define which page and rights access
 // app_namePage = all members, must be logged
 // app_admin_namePage = must be an administrator
-$page = "app_modular";
+$page = "app_admin_circles";
 //////////////////////////////////////////
 //////////////////////////////////////////
 // load core intelligenza
@@ -53,7 +53,7 @@ require_once("scripts/inc.core.intelligenza.php");
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title><?php echo($app_nameProject);?> | App Modular</title>
+	<title><?php echo($app_nameProject);?> | Social Circles</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta name="Googlebot" lang= "<?php echo($_SESSION['language']);?>" content="NOODP">
 	<meta content="" name="description" />
@@ -91,20 +91,48 @@ require_once("scripts/inc.core.intelligenza.php");
 		<!-- END #sidebar -->
 		
 		<!-- BEGIN #content -->
-		<div id="content" class="content bgBoxApp">
+		<div id="content" class="content">
 			<!-- BEGIN breadcrumb -->
 			<ul class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-				<li class="breadcrumb-item active">Modular</li>
+				<li class="breadcrumb-item"><a href="#">Home</a></li>
+				<li class="breadcrumb-item active">Social Circles</li>
 			</ul>
 			<!-- END breadcrumb -->
 			<!-- BEGIN page-header -->
 			<h1 class="page-header">
-				Modular <small>Create and Manage moduls and/or choose yours...</small>
+				Social Circles <small>Connect with others circles...</small>
 			</h1>
 			<!-- END page-header -->
 			<p>
-				work in progress
+				<!-- BEGIN setting-list -->
+			<ul class="setting-list">
+				<li class="setting-title bg-green">PUBLIC KEY</li> 
+				<li>
+					<div class="field">Connect with others circles<br>
+						<span class="text-muted" style="font-size: 8px;">Give this key to connect with other circles</span>
+					</div>
+					<div class="value">
+						<?php echo($app_publicKey);?> (pas d'infos sur l'app neutre la clef, générée une fois uniquement, pour connecter )
+					</div>
+					<div class="action">
+					  
+					</div>
+				</li>
+				
+				<li class="setting-title bg-red">PRIVATE KEY</li>
+				<li>
+					<div class="field">Unique APP ID<br>
+						<span class="text-muted" style="font-size: 8px;">External requests, public key has to match</span>
+					</div>
+					<div class="value">
+						<?php echo($app_privateKey);?> (infos serveur domaine name date)
+					</div>
+					<div class="action">
+					  
+					</div>
+				</li>
+				<br>
+			</ul>
 			</p>
 		</div>
 		<!-- END #content -->

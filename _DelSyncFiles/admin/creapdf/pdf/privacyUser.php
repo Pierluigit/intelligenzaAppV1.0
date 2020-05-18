@@ -113,7 +113,7 @@ $pdf->SetSubject('');
 $pdf->SetKeywords('');
 
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, ''.$app_nameProject.'', 'Member '.$pseudoUser.'');
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, ''.$nameProject.'', 'Member '.$pseudoUser.'');
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -159,7 +159,7 @@ $pdf->AddPage();
  */
 $html = '
 <h1 align="center">Privacy Transparency</h1>
-<p align="center">Here All your Personal Information</p>
+<p align="center">Here All your Information</p>
 <table cellspacing="0" cellpadding="1" border="0">
     <tr>
 		<td rowspan="2">
@@ -220,8 +220,8 @@ Country: <b>'.$ahu_country.'</b><br />
 <p>
 Type: <b>Billing</b><br />
 If same than home: <b>'.$abu_ifSameHome.'</b><br />
-Longitude: <b>'.$abu_longitude.'</b><br />
-Latitude: <b>'.$abu_latitude.'</b><br />
+Longitude: <b>'.$ageUser.'</b><br />
+Latitude: <b>'.$sexUser.'</b><br />
 Name: <b>'.$abu_name.'</b><br />
 Phone: <b>'.$abu_phone.'</b><br />
 Entery Code: <b>'.$abu_entryCode.'</b><br />
@@ -235,8 +235,8 @@ Country: <b>'.$abu_country.'</b><br />
 <p>
 Type: <b>Delivery</b><br />
 If same than home: <b>'.$adu_ifSameHome.'</b><br />
-Longitude: <b>'.$adu_longitude.'</b><br />
-Latitude: <b>'.$adu_latitude.'</b><br />
+Longitude: <b>'.$ageUser.'</b><br />
+Latitude: <b>'.$sexUser.'</b><br />
 Name: <b>'.$adu_name.'</b><br />
 Phone: <b>'.$adu_phone.'</b><br />
 Entery Code: <b>'.$adu_entryCode.'</b><br />

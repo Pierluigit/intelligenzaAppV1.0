@@ -1,11 +1,11 @@
 <!-- BEGIN coming-soon-footer -->
 <div class="coming-soon-footer bgBox">
 	<div class="social-list" style="display: block">
-		<!--<a href="#"><i class="ti-facebook"></i></a>
+		<a href="#"><i class="ti-facebook"></i></a>
 		<a href="#"><i class="ti-instagram"></i></a>
 		<a href="#"><i class="ti-twitter"></i></a>
-		<a href="#"><i class="ti-google"></i></a>-->
-		<a href="https://github.com/Pierluigit/intelligenzaAppV1.0"><i class="ti-github "></i></a>
+		<a href="#"><i class="ti-google"></i></a>
+		<a href="https://github.com/Pierluigit"><i class="ti-github"></i></a>
 	</div>
 	<div class="coming-soon-copyright">
 		<?php if($okSettings==true) {?>

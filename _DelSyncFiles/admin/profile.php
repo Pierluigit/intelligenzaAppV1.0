@@ -91,7 +91,7 @@ require_once("scripts/inc.core.intelligenza.php");
 		<!-- END #sidebar -->
 		
 		<!-- BEGIN #content -->
-		<div id="content" class="content p-0 bgBoxApp">
+		<div id="content" class="content p-0">
 			
 			<!-- BEGIN profile-header -->
 			<div class="profile-header">

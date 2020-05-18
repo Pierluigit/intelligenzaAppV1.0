@@ -58,9 +58,9 @@ if(isset($_POST['btn_addMember'])) {
 		$okMailInscrit = false;
 	}
 	// test si existe deja dans la base 
-	$dbRequest=$connectDBIntelApp->query("select * from members where email='$emailInscrit'");
-	$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-	if( $getResult = $dbRequest->fetch() ) {	
+	$resultats=$connectDBIntelApp->query("select * from members where email='$emailInscrit'");
+	$resultats->setFetchMode(PDO::FETCH_OBJ);
+	if( $unResultat = $resultats->fetch() ) {	
 		$okMailInscrit = false;
 	}
 	
@@ -70,15 +70,15 @@ if(isset($_POST['btn_addMember'])) {
 		$okPseudoInscrit = false;
 	}else {
 		// test si existe deja dans la base 
-		$dbRequest=$connectDBIntelApp->query("select * from members where pseudo='$pseudoInscrit'");
-		$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-		if( $getResult = $dbRequest->fetch() ) {	
+		$resultats=$connectDBIntelApp->query("select * from members where pseudo='$pseudoInscrit'");
+		$resultats->setFetchMode(PDO::FETCH_OBJ);
+		if( $unResultat = $resultats->fetch() ) {	
 			$okPseudoInscrit = false;
 		}
 		// 2eme test if blackliste pseudo
-		$dbRequestBL=$connectDBIntelApp->query("select * from site_blackList_pseudo where pseudo='$pseudoInscrit'");
-		$dbRequestBL->setFetchMode(PDO::FETCH_OBJ);
-		if( $getResult = $dbRequestBL->fetch() ) {	
+		$resultatsBL=$connectDBIntelApp->query("select * from site_blackList_pseudo where pseudo='$pseudoInscrit'");
+		$resultatsBL->setFetchMode(PDO::FETCH_OBJ);
+		if( $unResultat = $resultatsBL->fetch() ) {	
 			$okPseudoInscrit = false;
 		}
 	}
@@ -137,10 +137,10 @@ if(isset($_GET['permanentlyDeleteMember'])) {
 	// delete member_intel
 	$connectDBIntelApp->exec("delete from members_intel where idMember='$idMember' limit 1");
 	// delete members_friends
-	$dbRequest=$connectDBIntelApp->query("select * from members_friends where idMember='$idMember'");
-	$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-	while( $getResult = $dbRequest->fetch() ) {
-		$id = $getResult->id;
+	$resultats=$connectDBIntelApp->query("select * from members_friends where idMember='$idMember'");
+	$resultats->setFetchMode(PDO::FETCH_OBJ);
+	while( $unResultat = $resultats->fetch() ) {
+		$id = $unResultat->id;
 		$connectDBIntelApp->exec("delete from members_friends where id='$id' limit 1");
 	}
 	// delete address
@@ -150,34 +150,34 @@ if(isset($_GET['permanentlyDeleteMember'])) {
 	// delete wallet
 	$connectDBIntelApp->exec("delete from admin_wallets where idMember='$idMember' limit 1");
 	// delete wallet movement
-	$dbRequest=$connectDBIntelApp->query("select * from admin_wallets_movements where idMember='$idMember'");
-	$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-	while( $getResult = $dbRequest->fetch() ) {
-		$idWalletMovment = $getResult->idWalletMovment;
+	$resultats=$connectDBIntelApp->query("select * from admin_wallets_movements where idMember='$idMember'");
+	$resultats->setFetchMode(PDO::FETCH_OBJ);
+	while( $unResultat = $resultats->fetch() ) {
+		$idWalletMovment = $unResultat->idWalletMovment;
 		$connectDBIntelApp->exec("delete from admin_wallets_movements where idWalletMovment='$idWalletMovment' limit 1");
 	}
 	
 	// delete galleries
-	$dbRequest=$connectDBIntelApp->query("select * from galleries where idMember='$idMember'");
-	$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-	while( $getResult = $dbRequest->fetch() ) {
-		$idGallery = $getResult->idGallery;
+	$resultats=$connectDBIntelApp->query("select * from galleries where idMember='$idMember'");
+	$resultats->setFetchMode(PDO::FETCH_OBJ);
+	while( $unResultat = $resultats->fetch() ) {
+		$idGallery = $unResultat->idGallery;
 		$connectDBIntelApp->exec("delete from galleries where idGallery='$idGallery' limit 1");
 	}
 	
 	// delete photos db
-	$dbRequest=$connectDBIntelApp->query("select * from photos where idMember='$idMember'");
-	$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-	while( $getResult = $dbRequest->fetch() ) {
-		$idPhoto = $getResult->idPhoto;
+	$resultats=$connectDBIntelApp->query("select * from photos where idMember='$idMember'");
+	$resultats->setFetchMode(PDO::FETCH_OBJ);
+	while( $unResultat = $resultats->fetch() ) {
+		$idPhoto = $unResultat->idPhoto;
 		$connectDBIntelApp->exec("delete from photos where idPhoto='idPhoto' limit 1");
 	}
 	
 	// delete videos
-	$dbRequest=$connectDBIntelApp->query("select * from videos where idMember='$idMember'");
-	$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-	while( $getResult = $dbRequest->fetch() ) {
-		$idVideo = $getResult->idVideo;
+	$resultats=$connectDBIntelApp->query("select * from videos where idMember='$idMember'");
+	$resultats->setFetchMode(PDO::FETCH_OBJ);
+	while( $unResultat = $resultats->fetch() ) {
+		$idVideo = $unResultat->idVideo;
 		$connectDBIntelApp->exec("delete from videos where idVideo='$idVideo' limit 1");
 	}
 	// delete site_noty
@@ -380,7 +380,7 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 		<!-- END #sidebar -->
 		
 		<!-- BEGIN #content -->
-		<div id="content" class="content bgBoxApp">
+		<div id="content" class="content">
 			<!-- BEGIN breadcrumb -->
 			<ul class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -601,37 +601,37 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 			</thead>
 			<tbody>
 				<?php // liste seulement les tickets de la personne logée
-				$dbRequest=$connectDBIntelApp->query("select * from members order by idMember desc");
-				$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-				while( $getResult = $dbRequest->fetch() ) {
-					$idMember = $getResult->idMember;
-					$pseudoMember = $getResult->pseudo;
-					$phonePersoMember = $getResult->phonePerso;
-					$phoneProMember = $getResult->phonePro;
-					$jobMember = $getResult->job;
-					$skillsMember = $getResult->skills;
-					$ageMember = $getResult->age;
-					$sexMember = $getResult->sex;
-					$emailMember = $getResult->email;
-					$ifEmailConfirmedMember = $getResult->ifEmailConfirmed;
-					$websitePersoMember = $getResult->websitePerso;
+				$resultats=$connectDBIntelApp->query("select * from members order by idMember desc");
+				$resultats->setFetchMode(PDO::FETCH_OBJ);
+				while( $unResultat = $resultats->fetch() ) {
+					$idMember = $unResultat->idMember;
+					$pseudoMember = $unResultat->pseudo;
+					$phonePersoMember = $unResultat->phonePerso;
+					$phoneProMember = $unResultat->phonePro;
+					$jobMember = $unResultat->job;
+					$skillsMember = $unResultat->skills;
+					$ageMember = $unResultat->age;
+					$sexMember = $unResultat->sex;
+					$emailMember = $unResultat->email;
+					$ifEmailConfirmedMember = $unResultat->ifEmailConfirmed;
+					$websitePersoMember = $unResultat->websitePerso;
 					
 					
 					// if member is blocked
-					/*$dbRequestIsBlocked=$connectDBIntelApp->query("select * from site_blacklist_email where email='$emailMember'");
-					$dbRequestIsBlocked->setFetchMode(PDO::FETCH_OBJ);
-					if( $getResult = $dbRequestIsBlocked->fetch() ) {	
+					/*$resultatsIsBlocked=$connectDBIntelApp->query("select * from site_blacklist_email where email='$emailMember'");
+					$resultatsIsBlocked->setFetchMode(PDO::FETCH_OBJ);
+					if( $unResultat = $resultatsIsBlocked->fetch() ) {	
 						$ifMemberIsBlocked = true;
 					}*/
 					
-					$dbRequest_intel=$connectDBIntelApp->query("select * from members_intel where idMember='$idMember'");
-					$dbRequest_intel->setFetchMode(PDO::FETCH_OBJ);
-					if( $getResult_intel = $dbRequest_intel->fetch() ) {
-						$avatarMember = $getResult_intel->avatar;
-						$rights = $getResult_intel->rights;
-						$dateInscription = $getResult_intel->dateInscription;
-						$ifShowPhonePerso = $getResult_intel->ifShowPhonePerso;
-						$ifShowPhonePro = $getResult_intel->ifShowPhonePro;
+					$resultats_intel=$connectDBIntelApp->query("select * from members_intel where idMember='$idMember'");
+					$resultats_intel->setFetchMode(PDO::FETCH_OBJ);
+					if( $unResultat_intel = $resultats_intel->fetch() ) {
+						$avatarMember = $unResultat_intel->avatar;
+						$rights = $unResultat_intel->rights;
+						$dateInscription = $unResultat_intel->dateInscription;
+						$ifShowPhonePerso = $unResultat_intel->ifShowPhonePerso;
+						$ifShowPhonePro = $unResultat_intel->ifShowPhonePro;
 						// ici format la date pour l'affichage, format dans la base (AAAA/MM/JJ)
 						$dateSinceJJ = substr($dateInscription, 8, 2);     // jour  
 						$dateSinceMM = substr($dateInscription, 5, 2);    // mois 
@@ -664,11 +664,11 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 						// check if user blacklisted ?
 						////////////////////////////////////////////////////////
 						$memberBlocked = false;
-						$dbRequestBlack=$connectDBIntelApp->query("select * from site_blackList_user where idMember='$idMember'");
-						$dbRequestBlack->setFetchMode(PDO::FETCH_OBJ);
-						if( $getResult = $dbRequestBlack->fetch() ) { 
-							$dateBloqued = $getResult->timeStamp;
-							$howLong = $getResult->howLong;
+						$resultatsBlack=$connectDBIntelApp->query("select * from site_blackList_user where idMember='$idMember'");
+						$resultatsBlack->setFetchMode(PDO::FETCH_OBJ);
+						if( $unResultat = $resultatsBlack->fetch() ) { 
+							$dateBloqued = $unResultat->timeStamp;
+							$howLong = $unResultat->howLong;
 							// format date bloquee 
 							$heureBloque = substr($dateBloqued, 11, 2);	
 							$minuteBloque = substr($dateBloqued, 14, 2);  
@@ -729,11 +729,11 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 				</thead>
 				<tbody>
 				<?php // while pseudo
-				$dbRequest=$connectDBIntelApp->query("select * from site_blackList_pseudo order by pseudo asc");
-				$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-				while( $getResult = $dbRequest->fetch() ) {
-					$idPseudoReserved = $getResult->idBlackListePseudo;
-					$pseudoReserved = $getResult->pseudo;
+				$resultats=$connectDBIntelApp->query("select * from site_blackList_pseudo order by pseudo asc");
+				$resultats->setFetchMode(PDO::FETCH_OBJ);
+				while( $unResultat = $resultats->fetch() ) {
+					$idPseudoReserved = $unResultat->idBlackListePseudo;
+					$pseudoReserved = $unResultat->pseudo;
 				?>
 				<tr>
 					<td></td>
@@ -777,11 +777,11 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 				</thead>
 				<tbody>
 				<?php // while pseudo
-				$dbRequest=$connectDBIntelApp->query("select * from site_blackList_email order by email asc");
-				$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-				while( $getResult = $dbRequest->fetch() ) {
-					$idEmailBlackListed = $getResult->idEmailBlackListed;
-					$emailBlackListed = $getResult->email;
+				$resultats=$connectDBIntelApp->query("select * from site_blackList_email order by email asc");
+				$resultats->setFetchMode(PDO::FETCH_OBJ);
+				while( $unResultat = $resultats->fetch() ) {
+					$idEmailBlackListed = $unResultat->idEmailBlackListed;
+					$emailBlackListed = $unResultat->email;
 				?>
 				<tr>
 					<td></td>
@@ -825,11 +825,11 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 				</thead>
 				<tbody>
 				<?php // while pseudo
-				$dbRequest=$connectDBIntelApp->query("select * from site_blackList_words order by idWordBlackListed asc");
-				$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-				while( $getResult = $dbRequest->fetch() ) {
-					$idWordBlackListed = $getResult->idWordBlackListed;
-					$word = $getResult->word;
+				$resultats=$connectDBIntelApp->query("select * from site_blackList_words order by idWordBlackListed asc");
+				$resultats->setFetchMode(PDO::FETCH_OBJ);
+				while( $unResultat = $resultats->fetch() ) {
+					$idWordBlackListed = $unResultat->idWordBlackListed;
+					$word = $unResultat->word;
 				?>
 				<tr>
 					<td></td>

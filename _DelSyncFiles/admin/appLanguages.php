@@ -91,7 +91,7 @@ require_once("scripts/inc.core.intelligenza.php");
 		<!-- END #sidebar -->
 		
 		<!-- BEGIN #content -->
-		<div id="content" class="content bgBoxApp">
+		<div id="content" class="content">
 			<!-- BEGIN breadcrumb -->
 			<ul class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -192,17 +192,17 @@ require_once("scripts/inc.core.intelligenza.php");
 					</thead>
 					<tbody>
 					<?php // while pseudo
-					$dbRequest=$connectDBIntelApp->query("select * from country order by name desc");
-					$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-					while( $getResult = $dbRequest->fetch() ) {
-						$idCountry = $getResult->idCountry;
-						$name = $getResult->name;
-						$code = $getResult->code;
-						$nameFr = $getResult->nameFr;
-						$language = $getResult->language;
-						$languageCode = $getResult->languageCode;
-						$capitalCity = $getResult->capitalCity;
-						$currency = $getResult->currency;
+					$resultats=$connectDBIntelApp->query("select * from country order by name desc");
+					$resultats->setFetchMode(PDO::FETCH_OBJ);
+					while( $unResultat = $resultats->fetch() ) {
+						$idCountry = $unResultat->idCountry;
+						$name = $unResultat->name;
+						$code = $unResultat->code;
+						$nameFr = $unResultat->nameFr;
+						$language = $unResultat->language;
+						$languageCode = $unResultat->languageCode;
+						$capitalCity = $unResultat->capitalCity;
+						$currency = $unResultat->currency;
 						// format name for flag img
 						$nameFlag = strtolower($name);//strtolower strtoupper
 						$nameFlag = str_replace ( " ", "-", $nameFlag);	
@@ -235,20 +235,20 @@ require_once("scripts/inc.core.intelligenza.php");
 				if(isset($_GET['editCountry'])) {//unset($_SESSION['editMember']);
 					// recup infos 
 					$idCountry = $_GET['editCountry'];
-					$dbRequest=$connectDBIntelApp->query("select * from country where idCountry='$idCountry'");
-					$dbRequest->setFetchMode(PDO::FETCH_OBJ);
-					if( $getResult = $dbRequest->fetch() ) {
-						$idCountry = $getResult->idCountry;
-						$name = $getResult->name;
-						$nameFr = $getResult->nameFr;
-						$languageCode = $getResult->languageCode;
-						$language = $getResult->language;
-						$code = $getResult->code;
-						$capitalCity = $getResult->capitalCity;
-						$currency = $getResult->currency;
-						$weather = $getResult->weather;
-						$zonesIATA = $getResult->zonesIATA;
-						$map = $getResult->map;
+					$resultats=$connectDBIntelApp->query("select * from country where idCountry='$idCountry'");
+					$resultats->setFetchMode(PDO::FETCH_OBJ);
+					if( $unResultat = $resultats->fetch() ) {
+						$idCountry = $unResultat->idCountry;
+						$name = $unResultat->name;
+						$nameFr = $unResultat->nameFr;
+						$languageCode = $unResultat->languageCode;
+						$language = $unResultat->language;
+						$code = $unResultat->code;
+						$capitalCity = $unResultat->capitalCity;
+						$currency = $unResultat->currency;
+						$weather = $unResultat->weather;
+						$zonesIATA = $unResultat->zonesIATA;
+						$map = $unResultat->map;
 						// format name for flag img
 						$nameFlag = strtolower($name);//strtolower strtoupper
 						$nameFlag = str_replace ( " ", "-", $nameFlag);	

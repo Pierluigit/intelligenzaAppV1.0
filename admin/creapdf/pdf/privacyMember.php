@@ -116,7 +116,7 @@ $pdf->SetSubject('');
 $pdf->SetKeywords('');
 
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, ''.$nameProject.'', 'Member '.$pseudoMember.'');
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, ''.$app_nameProject.'', 'Member '.$pseudoMember.'');
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -238,8 +238,8 @@ Country: <b>'.$abm_country.'</b><br />
 <p>
 Type: <b>Delivery</b><br />
 If same than home: <b>'.$adm_ifSameHome.'</b><br />
-Longitude: <b>'.$i.'</b><br />
-Latitude: <b>'.$adm_longitude.'</b><br />
+Longitude: <b>'.$adm_longitude.'</b><br />
+Latitude: <b>'.$$adm_latitude.'</b><br />
 Name: <b>'.$adm_latitude.'</b><br />
 Phone: <b>'.$adm_phone.'</b><br />
 Entery Code: <b>'.$adm_entryCode.'</b><br />

@@ -67,10 +67,10 @@ if(isset($_GET['deleteNoty'])) {
 	// delete noty
 	$connectDBIntelApp->exec("delete from site_noty where idNoty='$idNoty' limit 1");
 	// delete noty saw
-	$dbRequest_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$idNoty'");
-	$dbRequest_notySaw->setFetchMode(PDO::FETCH_OBJ);
-	while( $getResult_notySaw = $dbRequest_notySaw->fetch() ) {
-		$idWhoSawNoty = $getResult_notySaw->idWhoSawNoty;
+	$resultats_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$idNoty'");
+	$resultats_notySaw->setFetchMode(PDO::FETCH_OBJ);
+	while( $unResultat_notySaw = $resultats_notySaw->fetch() ) {
+		$idWhoSawNoty = $unResultat_notySaw->idWhoSawNoty;
 		$connectDBIntelApp->exec("delete from site_notySawByUser where idWhoSawNoty='$idWhoSawNoty' limit 1");
 	}
 	
@@ -184,7 +184,7 @@ if(isset($_GET['deleteNoty'])) {
 		<!-- END #sidebar -->
 		
 		<!-- BEGIN #content -->
-		<div id="content" class="content bgBoxApp">
+		<div id="content" class="content">
 			<!-- BEGIN breadcrumb -->
 			<ul class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -284,23 +284,23 @@ if(isset($_GET['deleteNoty'])) {
 			// noty up  
 			///////////////////////////////////////////////////////////////
 				$totalNoty=0;
-				$dbRequest_noty=$connectDBIntelApp->query("select * from site_noty where idMember='$idUser' and type='notyUp' order by dateNoty asc");
-				$dbRequest_noty->setFetchMode(PDO::FETCH_OBJ);
-				while( $getResult_noty = $dbRequest_noty->fetch() ) {
-					$noty_idNoty = $getResult_noty->idNoty;
-					$noty_idFrom = $getResult_noty->idFrom;
+				$resultats_noty=$connectDBIntelApp->query("select * from site_noty where idMember='$idUser' and type='notyUp' order by dateNoty asc");
+				$resultats_noty->setFetchMode(PDO::FETCH_OBJ);
+				while( $unResultat_noty = $resultats_noty->fetch() ) {
+					$noty_idNoty = $unResultat_noty->idNoty;
+					$noty_idFrom = $unResultat_noty->idFrom;
 					// recup pseudo
 					if($noty_idFrom!=0) {// 0 = admin
-						$dbRequest_notyMFrom=$connectDBIntelApp->query("select * from members where idMember='$noty_idFrom'");
-						$dbRequest_notyMFrom->setFetchMode(PDO::FETCH_OBJ);
-						if( $getResult_notyMFrom = $dbRequest_notyMFrom->fetch() ) {
-							$noty_pseudoFrom = $getResult_notyMFrom->pseudo;
+						$resultats_notyMFrom=$connectDBIntelApp->query("select * from members where idMember='$noty_idFrom'");
+						$resultats_notyMFrom->setFetchMode(PDO::FETCH_OBJ);
+						if( $unResultat_notyMFrom = $resultats_notyMFrom->fetch() ) {
+							$noty_pseudoFrom = $unResultat_notyMFrom->pseudo;
 						}
 						// recup avatar
-						$dbRequest_notyMIFrom=$connectDBIntelApp->query("select * from members_intel where idMember='$noty_idFrom'");
-						$dbRequest_notyMIFrom->setFetchMode(PDO::FETCH_OBJ);
-						if( $getResult_notyMIFrom = $dbRequest_notyMIFrom->fetch() ) {
-							$noty_avatarFrom = $getResult_notyMIFrom->avatar;
+						$resultats_notyMIFrom=$connectDBIntelApp->query("select * from members_intel where idMember='$noty_idFrom'");
+						$resultats_notyMIFrom->setFetchMode(PDO::FETCH_OBJ);
+						if( $unResultat_notyMIFrom = $resultats_notyMIFrom->fetch() ) {
+							$noty_avatarFrom = $unResultat_notyMIFrom->avatar;
 							if($noty_avatarFrom!="") {// user have owns avatar
 								$noty_avatarFrom="../members/id_".$noty_idFrom."/img/".$noty_avatarFrom."";
 							}else {
@@ -318,13 +318,13 @@ if(isset($_GET['deleteNoty'])) {
 						$noty_avatarFrom = "../img/chat-box.png";
 					}
 
-					$noty_dateNoty = $getResult_noty->dateNoty;
-					$noty_dateNotyUpdate = $getResult_noty->dateNotyUpdate;
-					$noty_categories = $getResult_noty->categories;
-					$noty_title = $getResult_noty->title;
-					$noty_message = $getResult_noty->message;
-					$noty_link = $getResult_noty->linkNoty;
-					$noty_classCss = $getResult_noty->classCss;
+					$noty_dateNoty = $unResultat_noty->dateNoty;
+					$noty_dateNotyUpdate = $unResultat_noty->dateNotyUpdate;
+					$noty_categories = $unResultat_noty->categories;
+					$noty_title = $unResultat_noty->title;
+					$noty_message = $unResultat_noty->message;
+					$noty_link = $unResultat_noty->linkNoty;
+					$noty_classCss = $unResultat_noty->classCss;
 					// define type css
 					$noty_classCssType = "";
 					if($noty_classCss=="primary") { $noty_classCssType = "notyAdmin_primary";}
@@ -335,9 +335,9 @@ if(isset($_GET['deleteNoty'])) {
 					
 					// check if saw
 					$notySaw = false;
-					$dbRequest_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$noty_idNoty'");
-					$dbRequest_notySaw->setFetchMode(PDO::FETCH_OBJ);
-					if( $getResult_notySaw = $dbRequest_notySaw->fetch() ) {
+					$resultats_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$noty_idNoty'");
+					$resultats_notySaw->setFetchMode(PDO::FETCH_OBJ);
+					if( $unResultat_notySaw = $resultats_notySaw->fetch() ) {
 						// saw nothing
 						$notySaw = true;
 						
@@ -409,23 +409,23 @@ if(isset($_GET['deleteNoty'])) {
 			// noty up  
 			///////////////////////////////////////////////////////////////
 				$totalNoty=0;
-				$dbRequest_noty=$connectDBIntelApp->query("select * from site_noty where idMember='$idUser' and type='notyUp' order by dateNoty asc");
-				$dbRequest_noty->setFetchMode(PDO::FETCH_OBJ);
-				while( $getResult_noty = $dbRequest_noty->fetch() ) {
-					$noty_idNoty = $getResult_noty->idNoty;
-					$noty_idFrom = $getResult_noty->idFrom;
+				$resultats_noty=$connectDBIntelApp->query("select * from site_noty where idMember='$idUser' and type='notyUp' order by dateNoty asc");
+				$resultats_noty->setFetchMode(PDO::FETCH_OBJ);
+				while( $unResultat_noty = $resultats_noty->fetch() ) {
+					$noty_idNoty = $unResultat_noty->idNoty;
+					$noty_idFrom = $unResultat_noty->idFrom;
 					// recup pseudo
 					if($noty_idFrom!=0) {// 0 = admin
-						$dbRequest_notyMFrom=$connectDBIntelApp->query("select * from members where idMember='$noty_idFrom'");
-						$dbRequest_notyMFrom->setFetchMode(PDO::FETCH_OBJ);
-						if( $getResult_notyMFrom = $dbRequest_notyMFrom->fetch() ) {
-							$noty_pseudoFrom = $getResult_notyMFrom->pseudo;
+						$resultats_notyMFrom=$connectDBIntelApp->query("select * from members where idMember='$noty_idFrom'");
+						$resultats_notyMFrom->setFetchMode(PDO::FETCH_OBJ);
+						if( $unResultat_notyMFrom = $resultats_notyMFrom->fetch() ) {
+							$noty_pseudoFrom = $unResultat_notyMFrom->pseudo;
 						}
 						// recup avatar
-						$dbRequest_notyMIFrom=$connectDBIntelApp->query("select * from members_intel where idMember='$noty_idFrom'");
-						$dbRequest_notyMIFrom->setFetchMode(PDO::FETCH_OBJ);
-						if( $getResult_notyMIFrom = $dbRequest_notyMIFrom->fetch() ) {
-							$noty_avatarFrom = $getResult_notyMIFrom->avatar;
+						$resultats_notyMIFrom=$connectDBIntelApp->query("select * from members_intel where idMember='$noty_idFrom'");
+						$resultats_notyMIFrom->setFetchMode(PDO::FETCH_OBJ);
+						if( $unResultat_notyMIFrom = $resultats_notyMIFrom->fetch() ) {
+							$noty_avatarFrom = $unResultat_notyMIFrom->avatar;
 							if($noty_avatarFrom!="") {// user have owns avatar
 								$noty_avatarFrom="../members/id_".$noty_idFrom."/img/".$noty_avatarFrom."";
 							}else {
@@ -443,13 +443,13 @@ if(isset($_GET['deleteNoty'])) {
 						$noty_avatarFrom = "../img/chat-box.png";
 					}
 
-					$noty_dateNoty = $getResult_noty->dateNoty;
-					$noty_dateNotyUpdate = $getResult_noty->dateNotyUpdate;
-					$noty_categories = $getResult_noty->categories;
-					$noty_title = $getResult_noty->title;
-					$noty_message = $getResult_noty->message;
-					$noty_link = $getResult_noty->linkNoty;
-					$noty_classCss = $getResult_noty->classCss;
+					$noty_dateNoty = $unResultat_noty->dateNoty;
+					$noty_dateNotyUpdate = $unResultat_noty->dateNotyUpdate;
+					$noty_categories = $unResultat_noty->categories;
+					$noty_title = $unResultat_noty->title;
+					$noty_message = $unResultat_noty->message;
+					$noty_link = $unResultat_noty->linkNoty;
+					$noty_classCss = $unResultat_noty->classCss;
 					// define type css
 					$noty_classCssType = "";
 					if($noty_classCss=="primary") { $noty_classCssType = "notyAdmin_primary";}
@@ -460,9 +460,9 @@ if(isset($_GET['deleteNoty'])) {
 					
 					// check if saw
 					$notySaw = false;
-					$dbRequest_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$noty_idNoty'");
-					$dbRequest_notySaw->setFetchMode(PDO::FETCH_OBJ);
-					if( $getResult_notySaw = $dbRequest_notySaw->fetch() ) {
+					$resultats_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$noty_idNoty'");
+					$resultats_notySaw->setFetchMode(PDO::FETCH_OBJ);
+					if( $unResultat_notySaw = $resultats_notySaw->fetch() ) {
 						// saw 
 						$totalNoty+=1;
 							?>
@@ -537,18 +537,18 @@ if(isset($_GET['deleteNoty'])) {
 	// new noty
 	if(isset($_GET['whileNoty'])) {
 		$totalNoty=0;
-		$dbRequest_noty=$connectDBIntelApp->query("select * from site_noty where idMember='$idUser' and type='notyUp' order by dateNoty asc");
-		$dbRequest_noty->setFetchMode(PDO::FETCH_OBJ);
-		while( $getResult_noty = $dbRequest_noty->fetch() ) {
-			$noty_idNoty = $getResult_noty->idNoty;
-			$noty_idFrom = $getResult_noty->idFrom;
-			$noty_dateNoty = $getResult_noty->dateNoty;
-			$noty_dateNotyUpdate = $getResult_noty->dateNotyUpdate;
+		$resultats_noty=$connectDBIntelApp->query("select * from site_noty where idMember='$idUser' and type='notyUp' order by dateNoty asc");
+		$resultats_noty->setFetchMode(PDO::FETCH_OBJ);
+		while( $unResultat_noty = $resultats_noty->fetch() ) {
+			$noty_idNoty = $unResultat_noty->idNoty;
+			$noty_idFrom = $unResultat_noty->idFrom;
+			$noty_dateNoty = $unResultat_noty->dateNoty;
+			$noty_dateNotyUpdate = $unResultat_noty->dateNotyUpdate;
 			// check if saw
 			$notySaw = false;
-			$dbRequest_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$noty_idNoty'");
-			$dbRequest_notySaw->setFetchMode(PDO::FETCH_OBJ);
-			if( $getResult_notySaw = $dbRequest_notySaw->fetch() ) {
+			$resultats_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$noty_idNoty'");
+			$resultats_notySaw->setFetchMode(PDO::FETCH_OBJ);
+			if( $unResultat_notySaw = $resultats_notySaw->fetch() ) {
 				// saw nothing
 				$notySaw = true;
 			}
@@ -577,18 +577,18 @@ if(isset($_GET['deleteNoty'])) {
 	// new noty archived
 	if(isset($_GET['whileArchivedNoty'])) {
 		$totalNoty=0;
-		$dbRequest_noty=$connectDBIntelApp->query("select * from site_noty where idMember='$idUser' and type='notyUp' order by dateNoty asc");
-		$dbRequest_noty->setFetchMode(PDO::FETCH_OBJ);
-		while( $getResult_noty = $dbRequest_noty->fetch() ) {
-			$noty_idNoty = $getResult_noty->idNoty;
-			$noty_idFrom = $getResult_noty->idFrom;
-			$noty_dateNoty = $getResult_noty->dateNoty;
-			$noty_dateNotyUpdate = $getResult_noty->dateNotyUpdate;
+		$resultats_noty=$connectDBIntelApp->query("select * from site_noty where idMember='$idUser' and type='notyUp' order by dateNoty asc");
+		$resultats_noty->setFetchMode(PDO::FETCH_OBJ);
+		while( $unResultat_noty = $resultats_noty->fetch() ) {
+			$noty_idNoty = $unResultat_noty->idNoty;
+			$noty_idFrom = $unResultat_noty->idFrom;
+			$noty_dateNoty = $unResultat_noty->dateNoty;
+			$noty_dateNotyUpdate = $unResultat_noty->dateNotyUpdate;
 			// check if saw
 			$notySaw = false;
-			$dbRequest_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$noty_idNoty'");
-			$dbRequest_notySaw->setFetchMode(PDO::FETCH_OBJ);
-			if( $getResult_notySaw = $dbRequest_notySaw->fetch() ) {
+			$resultats_notySaw=$connectDBIntelApp->query("select * from site_notySawByUser where idMemberWhoSawNoty='$idUser' and idNoty='$noty_idNoty'");
+			$resultats_notySaw->setFetchMode(PDO::FETCH_OBJ);
+			if( $unResultat_notySaw = $resultats_notySaw->fetch() ) {
 				$totalNoty+=1;
 			?>
 	

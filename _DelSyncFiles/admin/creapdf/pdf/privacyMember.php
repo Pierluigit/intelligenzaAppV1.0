@@ -60,21 +60,21 @@
  * @since 2010-05-25
  */
 //////////////
-// php privacy user
+// php privacy Member
 /////////////
 session_start();
 require_once("../../scripts/inc.core.connectDB.php");
 require_once("../../scripts/inc.core.settings.php");
 // if not logged go home
 if(!isset($_SESSION['logOk'])) {
-	header("location:".$app_urlRoot."");
+	header("location:".$urlRoot."");
 }
-$idUser = $_SESSION['idUser'];
-require_once("../../scripts/inc.core.get.valueUser.php");
-require_once("../../scripts/inc.core.get.valueIntelUser.php");
-require_once("../../scripts/inc.core.get.valueAddressUser.php");
+$idMember = $_GET['idMember'];
+require_once("../../scripts/inc.core.get.valueMember.php");
+require_once("../../scripts/inc.core.get.valueIntelMember.php");
+require_once("../../scripts/inc.core.get.valueAddressMember.php");
 // format sex 
-if($sexUser=="Woman") { $civility="Mrs";}else{ $civility="Sir";}
+if($sexMember=="Woman") { $civility="Mrs";}else{ $civility="Sir";}
 
 // traite la date actuel
 $moisActuel = date('m');
@@ -83,8 +83,11 @@ $anneeActuel = date('Y');
 // format la date actuel
 $dateActuel = $jourActuel."-".$moisActuel."-".$anneeActuel;
 
+// traite le cas de l'avatar
+// <img src="'.$app_urlRoot.'/members/id_'.$idUser.'/img/'.$avatarUser.'" width="170" alt=""/><br />
+
 // liste les photos du membre
-/*$resultatsPhotoT=$connexion->query("select * from photos where idMember='$idUser'");  
+/*$resultatsPhotoT=$connexion->query("select * from photos where idMember='$idMember'");  
 $resultatsPhotoT->setFetchMode(PDO::FETCH_OBJ);
 $photoT = "";
 while( $unResultatPhotoT = $resultatsPhotoT->fetch() ) {	
@@ -113,7 +116,7 @@ $pdf->SetSubject('');
 $pdf->SetKeywords('');
 
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, ''.$app_nameProject.'', 'Member '.$pseudoUser.'');
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, ''.$nameProject.'', 'Member '.$pseudoMember.'');
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -159,21 +162,21 @@ $pdf->AddPage();
  */
 $html = '
 <h1 align="center">Privacy Transparency</h1>
-<p align="center">Here All your Personal Information</p>
+<p align="center">Here All your Information</p>
 <table cellspacing="0" cellpadding="1" border="0">
     <tr>
 		<td rowspan="2">
-			'.$civility.' <b>'.$pseudoUser.'</b><br />
-			Rights: <b>'.$rightsUser.'</b><br />
-			SubRights: <b>'.$subRightsUser.'</b><br />
-			Email <b>'.$emailUser.'</b><br />
-			Password: <b>'.$passwordUser.'</b>
+			'.$civility.' <b>'.$pseudoMember.'</b><br />
+			Rights: <b>'.$rightsMember.'</b><br />
+			SubRights: <b>'.$subRightsMember.'</b><br />
+			Email <b>'.$emailMember.'</b><br />
+			Password: <b>'.$passwordMember.'</b>
 		</td>
 		<td align="right">Date: '.$dateActuel.'</td>
     </tr>
     <tr>
        	<td align="right">
-			Member Since: <b>'.$dateInscriptionUser.'</b><br />
+			Member Since: <b>'.$dateInscriptionMember.'</b><br />
 		</td>
     </tr>
 
@@ -181,79 +184,79 @@ $html = '
 
 <h3 align="center">Member</h3>
 <p>
-Pseudo: <b>'.$pseudoUser.'</b><br />
-Job: <b>'.$jobUser.'</b><br />
-Skills: <b>'.$skillsUser.'</b><br />
-Age: <b>'.$ageUser.'</b><br />
-Sex: <b>'.$sexUser.'</b><br />
-Sports: <b>'.$sportsUser.'</b><br />
-Hobbies: <b>'.$hobbiesUser.'</b><br />
-Personal Phone: <b>'.$phonePersoUser.'</b><br />
-Professional Phone: <b>'.$phoneProUser.'</b><br />
-Nickname Skype : <b>'.$skypePseudoUser.'</b><br />
-Personal Website: <b>'.$websitePersoUser.'</b><br />
-Professional Website: <b>'.$websiteProUser.'</b><br />
-Social Link 1: <b>'.$socialLink1User.'</b><br />
-Social Link 2: <b>'.$socialLink2User.'</b><br />
-Social Link 3: <b>'.$socialLink3User.'</b><br />
-If Demand Data Delete: <b>'.$ifDeletAccuntUser.'</b><br />
-Date Demand: <b>'.$dateAskDeletionUser.'</b><br />
-Comment Demand: <b>'.$commentDeleteUser.'</b><br />
+Pseudo: <b>'.$pseudoMember.'</b><br />
+Job: <b>'.$jobMember.'</b><br />
+Skills: <b>'.$skillsMember.'</b><br />
+Age: <b>'.$ageMember.'</b><br />
+Sex: <b>'.$sexMember.'</b><br />
+Sports: <b>'.$sportsMember.'</b><br />
+Hobbies: <b>'.$hobbiesMember.'</b><br />
+Personal Phone: <b>'.$phonePersoMember.'</b><br />
+Professional Phone: <b>'.$phoneProMember.'</b><br />
+Nickname Skype : <b>'.$skypePseudoMember.'</b><br />
+Personal Website: <b>'.$websitePersoMember.'</b><br />
+Professional Website: <b>'.$websiteProMember.'</b><br />
+Social Link 1: <b>'.$socialLink1Member.'</b><br />
+Social Link 2: <b>'.$socialLink2Member.'</b><br />
+Social Link 3: <b>'.$socialLink3Member.'</b><br />
+If Demand Data Delete: <b>'.$ifDeletAccuntMember.'</b><br />
+Date Demand: <b>'.$dateAskDeletionMember.'</b><br />
+Comment Demand: <b>'.$commentDeleteMember.'</b><br />
 </p>
 
 <h3 align="center">Address</h3>
 <p>
 Type: <b>Home</b><br />
-If Auto Geolocation: <b>'.$ahu_ifGeoAuto.'</b><br />
-Longitude: <b>'.$ahu_longitude.'</b><br />
-Latitude: <b>'.$ahu_latitude.'</b><br />
-Name: <b>'.$ahu_name.'</b><br />
-Phone: <b>'.$ahu_phone.'</b><br />
-Entery Code: <b>'.$ahu_entryCode.'</b><br />
-Street: <b>'.$ahu_street.'</b><br />
-Zip Code: <b>'.$ahu_zipCode.'</b><br />
-City: <b>'.$ahu_city.'</b><br />
-State: <b>'.$ahu_state.'</b><br />
-Country: <b>'.$ahu_country.'</b><br />
+If Auto Geolocation: <b>'.$ahm_ifGeoAuto.'</b><br />
+Longitude: <b>'.$ahm_longitude.'</b><br />
+Latitude: <b>'.$ahm_latitude.'</b><br />
+Name: <b>'.$ahm_name.'</b><br />
+Phone: <b>'.$ahm_phone.'</b><br />
+Entery Code: <b>'.$ahm_entryCode.'</b><br />
+Street: <b>'.$ahm_street.'</b><br />
+Zip Code: <b>'.$ahm_zipCode.'</b><br />
+City: <b>'.$ahm_city.'</b><br />
+State: <b>'.$ahm_state.'</b><br />
+Country: <b>'.$ahm_country.'</b><br />
 </p>
 
 <p>
 Type: <b>Billing</b><br />
-If same than home: <b>'.$abu_ifSameHome.'</b><br />
-Longitude: <b>'.$abu_longitude.'</b><br />
-Latitude: <b>'.$abu_latitude.'</b><br />
-Name: <b>'.$abu_name.'</b><br />
-Phone: <b>'.$abu_phone.'</b><br />
-Entery Code: <b>'.$abu_entryCode.'</b><br />
-Street: <b>'.$abu_street.'</b><br />
-Zip Code: <b>'.$abu_zipCode.'</b><br />
-City: <b>'.$abu_city.'</b><br />
-State: <b>'.$abu_state.'</b><br />
-Country: <b>'.$abu_country.'</b><br />
+If same than home: <b>'.$abm_ifSameHome.'</b><br />
+Longitude: <b>'.$abm_longitude.'</b><br />
+Latitude: <b>'.$abm_latitude.'</b><br />
+Name: <b>'.$abm_name.'</b><br />
+Phone: <b>'.$abm_phone.'</b><br />
+Entery Code: <b>'.$abm_entryCode.'</b><br />
+Street: <b>'.$abm_street.'</b><br />
+Zip Code: <b>'.$abm_zipCode.'</b><br />
+City: <b>'.$abm_city.'</b><br />
+State: <b>'.$abm_state.'</b><br />
+Country: <b>'.$abm_country.'</b><br />
 </p>
 
 <p>
 Type: <b>Delivery</b><br />
-If same than home: <b>'.$adu_ifSameHome.'</b><br />
-Longitude: <b>'.$adu_longitude.'</b><br />
-Latitude: <b>'.$adu_latitude.'</b><br />
-Name: <b>'.$adu_name.'</b><br />
-Phone: <b>'.$adu_phone.'</b><br />
-Entery Code: <b>'.$adu_entryCode.'</b><br />
-Street: <b>'.$adu_street.'</b><br />
-Zip Code: <b>'.$adu_zipCode.'</b><br />
-City: <b>'.$adu_city.'</b><br />
-State: <b>'.$adu_state.'</b><br />
-Country: <b>'.$adu_country.'</b><br />
+If same than home: <b>'.$adm_ifSameHome.'</b><br />
+Longitude: <b>'.$i.'</b><br />
+Latitude: <b>'.$adm_longitude.'</b><br />
+Name: <b>'.$adm_latitude.'</b><br />
+Phone: <b>'.$adm_phone.'</b><br />
+Entery Code: <b>'.$adm_entryCode.'</b><br />
+Street: <b>'.$adm_street.'</b><br />
+Zip Code: <b>'.$adm_zipCode.'</b><br />
+City: <b>'.$adm_city.'</b><br />
+State: <b>'.$adm_state.'</b><br />
+Country: <b>'.$adm_country.'</b><br />
 </p>
 
 <h3 align="center">Intelligenza</h3>
 <p>
-Rights: <b>'.$rightsUser.'</b><br />
-Sub Rights: <b>'.$subRightsUser.'</b><br />
-Function: <b>'.$fonctionUser.'</b><br />
-File Avatar: <b>'.$avatarUser.'</b><br />
-Avatar: '.$avatarUser.'<br />
+Rights: <b>'.$rightsMember.'</b><br />
+Sub Rights: <b>'.$subRightsMember.'</b><br />
+Function: <b>'.$fonctionMember.'</b><br />
+File Avatar: <b>'.$avatarMember.'</b><br />
+Avatar: '.$avatarMember.'<br />
 </p>
 
 ';
@@ -432,7 +435,7 @@ $pdf->lastPage();*/
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('Privacy_'.$nameProject.'_'.$pseudoUser.'_'.$dateActuel.'.pdf', 'I');
+$pdf->Output('Privacy_'.$nameProject.'_'.$pseudoMember.'_'.$dateActuel.'.pdf', 'I');
 
 //============================================================+
 // END OF FILE
