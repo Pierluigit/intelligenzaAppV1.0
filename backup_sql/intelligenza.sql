@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql16j15.db.hostpoint.internal
--- Generation Time: May 15, 2020 at 10:29 PM
+-- Generation Time: May 23, 2020 at 04:52 PM
 -- Server version: 10.1.44-MariaDB
 -- PHP Version: 7.2.28
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `escortgi_backups`
+-- Database: `escortgi_appIntel`
 --
 
 -- --------------------------------------------------------
@@ -733,7 +733,7 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`idMember`, `pseudo`, `--- connection ---`, `password`, `lostPassCode`, `dateRequestRegeneratePass`, `email`, `emailChange`, `validationEmailCode`, `ifEmailConfirmed`, `validationCodeNewEmail`, `dateRequestChangeEmail`, `doubleAuthentificationCode`, `dateDoubleAuthentification`, `--- perso ---`, `job`, `skills`, `age`, `sex`, `sports`, `hobbies`, `--- contact ---`, `phonePerso`, `phonePro`, `skypePseudo`, `--- social ---`, `websitePerso`, `websitePro`, `socialLink1`, `socialLink2`, `socialLink3`, `-- delet accunt ---`, `ifDeletAccunt`, `dateAskDeletion`, `commentDelete`) VALUES
-(1, 'Resistant', '', '9e6417ebffecef071eaeeb2ed0ca654b', '', '0000-00-00 00:00:00', 'resistant@protonmail.com', '', 'be931d169953cbf2dc9762b6aae4550f', 'yes', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '');
+(1, 'Warrior', '', '9e6417ebffecef071eaeeb2ed0ca654b', '', '0000-00-00 00:00:00', 'warrior@protonmail.com', '', 'be931d169953cbf2dc9762b6aae4550f', 'yes', '', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
