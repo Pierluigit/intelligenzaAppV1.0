@@ -2,9 +2,7 @@
 
 Hello warrior,
 
-First of all thank you to choosing this Alpha app,
-
-intelligenza is a PHP MySQL open source project GNU GENERAL PUBLIC LICENSE.
+intelligenza is a Javascript JQuery Ajax PHP MySQL open source project GNU GENERAL PUBLIC LICENSE.
 
 This is an app to manage your own data, members and access, multimedia, social network, your labels, products and more, this app works with your own data base.
 
