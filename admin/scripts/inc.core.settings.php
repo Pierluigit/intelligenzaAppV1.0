@@ -247,13 +247,13 @@ if(($set_activeSettingDb=="yes") && ($okCanUseDynamicSettings==true)) {
 	if($app_urlRoot!="") { $ok_urlRoot=true;}
 	if($app_nameProject!="") { $ok_nameProject=true;}
 	
-	if (preg_match("/^[\w\.\w]+@[\w\.-]+\.[a-z]{2,10}$/i", $ok_emailContactProject) ) {
+	if (preg_match("/^[\w\.\w]+@[\w\.-]+\.[a-z]{2,10}$/i", $app_emailContactProject) ) {
 		$ok_emailContactProject = true;
-		$set_emailComEmailProject = strtolower($set_emailComEmailProject);
+		$app_emailContactProject = strtolower($app_emailContactProject);
 	}
-	if (preg_match("/^[\w\.\w]+@[\w\.-]+\.[a-z]{2,10}$/i", $set_emailComEmailProject) ) {
+	if (preg_match("/^[\w\.\w]+@[\w\.-]+\.[a-z]{2,10}$/i", $app_emailComEmailProject) ) {
 		$okEmailComEmailProject = true;
-		$set_emailComEmailProject = strtolower($set_emailComEmailProject);
+		$app_emailComEmailProject = strtolower($app_emailComEmailProject);
 	}
 	// general test
 	if(($ok_urlRoot==true) && ($ok_nameProject==true) && ($ok_emailContactProject==true) && ($okEmailComEmailProject==true)) {
