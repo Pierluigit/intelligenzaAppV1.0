@@ -67,7 +67,7 @@ data-content="<?php echo($message);?><br><span style='font-size:8px;'><?php echo
 
 data-img="<?php echo($avatarFrom);?>"
 data-icon-class="bg-white"
-data-btn-url="<?php echo($app_urlRoot);?>/admin/appNoty.php"
+data-btn-url="<?php echo($app_urlRoot);?>/admin/noty.php"
 data-btn="true"
 data-btn-text="Details"
 data-btn-attr="data-click='trigger-pull'"></a>
