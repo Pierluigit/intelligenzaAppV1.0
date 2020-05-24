@@ -62,3 +62,9 @@ Core inside
     Backups
     ...
 
+Do you even try go to 
+https://try.intelligenza.pro
+user: warrior at protonmail.com
+password: fight
+
+enjoy your app
