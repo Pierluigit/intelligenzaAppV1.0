@@ -2,8 +2,8 @@
 -- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql16j15.db.hostpoint.internal
--- Generation Time: May 23, 2020 at 04:52 PM
+-- Host: 
+-- Generation Time: May 26, 2020 at 10:40 PM
 -- Server version: 10.1.44-MariaDB
 -- PHP Version: 7.2.28
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `escortgi_appIntel`
+-- Database: `intelligenza`
 --
 
 -- --------------------------------------------------------
@@ -117,7 +117,7 @@ CREATE TABLE `admin_promoCode` (
   `idMemberWhoHave` int(11) NOT NULL,
   `idMemberWhoBenefits` int(11) NOT NULL,
   `ifAlreadyUsed` varchar(5) NOT NULL,
-  `datePromoCodeActivation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `datePromoCodeActivation` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `promoCode` varchar(64) NOT NULL,
   `idCodeBenefits` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -225,7 +225,7 @@ CREATE TABLE `blog` (
   `idPostBlog` int(11) NOT NULL,
   `active` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `idMember` int(11) NOT NULL,
-  `article_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `article_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `article_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `article_source` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `article_sourceLink` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -567,7 +567,7 @@ CREATE TABLE `faq` (
   `idFaq` int(11) NOT NULL,
   `active` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `idMember` int(11) NOT NULL,
-  `dateInsert` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateInsert` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `type` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `categories` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `question` mediumtext COLLATE utf8_unicode_ci NOT NULL,
@@ -586,7 +586,7 @@ CREATE TABLE `faq` (
 
 CREATE TABLE `galleries` (
   `idGallery` int(11) NOT NULL,
-  `dateCreation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dateCreation` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `dateModification` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `idMember` int(11) NOT NULL,
   `ifPublicGallery` varchar(5) NOT NULL,
@@ -665,7 +665,7 @@ CREATE TABLE `labels_sellPoints` (
   `idLabel` int(11) NOT NULL,
   `idSellPoint` int(11) NOT NULL,
   `idMember` int(11) NOT NULL,
-  `since` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `since` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -806,7 +806,7 @@ CREATE TABLE `members_intel` (
 --
 
 INSERT INTO `members_intel` (`idIntelMember`, `ipUser`, `idMember`, `dateInscription`, `rights`, `subRights`, `avatar`, `bgProfile`, `--- communication —`, `ifMP`, `ifUseEmail`, `emailServer`, `passEmailServer`, `ifNotyUp`, `--- parametre account ---`, `ifPublicProfile`, `ifPublicPost`, `ifPublicFriendList`, `ifShowFonction`, `ifShowSkills`, `ifShowAge`, `ifShowSex`, `ifShowSports`, `ifShowHobbies`, `ifShowPhonePerso`, `ifShowPhonePro`, `ifShowSkype`, `ifShowWebsitePerso`, `ifShowWebsitePro`, `ifShowSocialLink1`, `ifShowSocialLink2`, `ifShowSocialLink3`, `ifShowName`, `ifShowPhone`, `ifShowEntryCode`, `ifShowStreet`, `ifShowZipCode`, `ifShowCity`, `ifShowState`, `ifShowCountry`, `--- preference ---`, `languagePref`, `deliverySchedule`, `preferedHours`, `--- ftp ---`) VALUES
-(1, '', 1, '2020-05-01 20:22:22', 'Administrator', '', '', '', '', 'no', 'no', '', '', 'yes', '', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', '', 'no', '', '', '', 'no', '', '', '', '', '');
+(1, '31.165.24.94', 1, '2020-05-01 20:22:22', 'Administrator', '', '', '', '', 'no', 'no', '', '', 'yes', '', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', '', 'no', '', '', '', 'no', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -905,7 +905,7 @@ CREATE TABLE `photos` (
   `idBlog` int(11) NOT NULL,
   `idLabel` int(11) NOT NULL,
   `idGallery` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL,
+  `type` varchar(64) NOT NULL,
   `tag` varchar(255) NOT NULL,
   `photoName` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -922,7 +922,8 @@ CREATE TABLE `posts` (
   `idPost` int(11) NOT NULL,
   `active` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `idMember` int(11) NOT NULL,
-  `article_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `article_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `article_update` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `article_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `article_source` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `article_sourceLink` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1042,7 +1043,7 @@ CREATE TABLE `site_blackList_email` (
   `ipUser` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `idMember` int(11) NOT NULL,
-  `timeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `timeStamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `howLong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1095,7 +1096,7 @@ CREATE TABLE `site_blackList_user` (
   `idBlackListUser` int(11) NOT NULL,
   `ipUser` varchar(255) NOT NULL,
   `idMember` int(11) NOT NULL,
-  `timeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `timeStamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `howLong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1261,7 +1262,7 @@ CREATE TABLE `site_settings` (
 --
 
 INSERT INTO `site_settings` (`idSetting`, `activeDbSettings`, `--- app ---`, `publicKey`, `privateKey`, `app_version`, `app_version_date`, `-- config --`, `ifActivePsp`, `ifKillAllSessionBlockLogin`, `ifLimitToComingSoon`, `ifOnlyApp`, `ifBlockNewRegistration`, `ifLocalSite`, `urlRoot`, `nameProject`, `faviconProject`, `logoProject`, `logoHProject`, `logoEmailProject`, `logoPdfProject`, `emailContactProject`, `emailComEmailProject`, `dateCountDownProject`, `sinceOrUntilCountDownProject`, `timeRememberMe`, `timeConnection`, `limitTimeProcessDoubleAndLost`, `limitTimeBlackList`, `ifLimitAge`, `limitAge`, `ifDoubleAuthentification`, `ifDemandSecurePassword`, `ifDemandSecureEmail`, `secureWebMail`, `ifActiveAcceptCookies`, `ifLookSelectAndRightClic`, `ifSharingFolder`, `limitSizePublicFolder`, `ifGathering`, `--- audio ---`, `ifUseAudio`, `volume`, `-- back end styles --`, `linkColor`, `linkColorOver`, `linkColorActive`, `linkColorVisited`, `selectionColorBg`, `selectionColor`, `bgProfileHeader`, `avatarProfile`, `-- front end styles --`, `bgRegister`, `bgLogin`, `bgComingSoon`, `bgPrivacy`, `bgTerms`, `bgAirlock`, `bgLostPass`, `bgFaq`, `bgContact`, `--- users ---`, `ifMembersUseKnowledges`, `ifMembersUseWallet`, `ifMembersUseLabel`, `ifMembersUseMyFolder`, `limitSizeMyFolder`, `-- money --`, `paypal`, `IBAN`, `BIC`, `-- cron tasks --`, `activeCronTasks`, `cronReport`, `emailReportCronTasks`) VALUES
-(77, 'yes', '', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'v1.0', '2020-05-01 16:18:33', '', 'no', 'no', 'no', 'no', 'no', 'no', '', '', '', '', '', '', '', '', '', '', '', 86400, 300, 300, 86400, 'no', '18', 'no', 'no', 'no', 'protonmail.com/tutanota.com/posteo.de/mailfence.com/startmail.com/mailbox.org', 'no', 'no', 'yes', 999, 'yes', '', 'yes', 9, '', '#3399ff', '#64b2ff', '#ffa500', '#64b2ff', 'white', 'black', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'yes', 'yes', 183, '', '', '', '', '', 'no', 'yes', '');
+(77, 'yes', '', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'v1.0', '2020-05-01 16:18:33', '', 'no', 'no', 'no', 'no', 'no', 'no', 'https://try.intelligenza.pro', 'Try intelligenza App', '', '', '', '', '', 'try@intelligenza.pro', 'try@intelligenza.pro', '', '', 86400, 300, 300, 86400, 'no', '18', 'no', 'no', 'no', 'protonmail.com/tutanota.com/posteo.de/mailfence.com/startmail.com/mailbox.org', 'no', 'no', 'yes', 999, 'yes', '', 'yes', 9, '', '#3399ff', '#64b2ff', '#ffa500', '#64b2ff', 'white', 'black', '', '', '', '', '', '', '', '', '', '', '', '', '', 'yes', 'yes', 'yes', 'yes', 183, '', '', '', '', '', 'no', 'yes', '');
 
 -- --------------------------------------------------------
 
@@ -1277,7 +1278,7 @@ CREATE TABLE `site_stats_links` (
   `ipUser` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `userAgent` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `page` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `cible` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1290,7 +1291,7 @@ CREATE TABLE `site_stats_links` (
 CREATE TABLE `site_stats_visits` (
   `idVisit` int(11) NOT NULL,
   `idMember` int(11) NOT NULL,
-  `ipUser` varchar(255) NOT NULL,
+  `ipUser` varchar(64) NOT NULL,
   `dateVisit` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `--- stats ---` varchar(0) NOT NULL,
   `fromPage` varchar(255) NOT NULL,

@@ -2,7 +2,7 @@
 -- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql16j15.db.hostpoint.internal
+-- Host: 
 -- Generation Time: May 14, 2020 at 01:31 PM
 -- Server version: 10.1.44-MariaDB
 -- PHP Version: 7.2.28
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `escortgi_knowledges`
+-- Database: `knowledges`
 --
 
 -- --------------------------------------------------------
