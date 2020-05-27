@@ -49,6 +49,14 @@ require_once("scripts/inc.core.intelligenza.php");
 if($app_ifSharingFolder!="yes") {
 	header("location:".$app_urlRoot."");
 }
+
+//////////////////////////////////////////
+//////////////////////////////////////////
+// delete file
+if(isset($_GET['suppFile'])) {
+	unlink("../share/".$_GET['suppFile']."");
+	header("location:?");
+}
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -103,8 +111,66 @@ if($app_ifSharingFolder!="yes") {
 		<!-- END #sidebar -->
 		
 		<!-- BEGIN #content -->
-		<div id="content" class="content">
-			<iframe width="100%" height="777" src="../modular/_fileManager/fileManager_share.php?" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<div id="content" class="content bgBoxApp"><br>
+			<div class="progress m-b-10">
+				<?php 
+				$statut = "success";
+				if($sizeUsedShare>=80) { $statut = "warning";}
+				if($sizeUsedShare>=90) { $statut = "danger";}
+				?>
+				<div class="progress-bar progress-bar-<?php echo($statut);?>" style="width: <?php echo($sizeUsedShare);?>%"><?php echo($sizeUsedShare);?>%/<?php echo($app_limitSizePublicFolder);?>MB!</div>
+			</div>
+			<?php if($sizeUsedShare<100) {?>
+				<iframe width="100%" height="777" src="../modular/_fileManager/fileManager_share.php?" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<?php }else {?>
+				<p>You have to delete some files to continue to use your folder!</p>
+				<?php 
+				/////////////////////////////////////////////////////////////
+				/////////////////////////////////////////////////////////////
+				// while files
+				/////////////////////////////////////////////////////////////
+				?>
+				<h4>Manage Files</h4><br>
+				
+				<br><br>
+				<table id="table_simple" class="display compact inverse" style="width:100%">
+					<thead>
+						<tr>
+							<th>Actions</th>
+							<th>Size</th>
+							<th>File</th>
+							<th>Supp.</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php // while pseudo
+					// gestion des images affiche 
+					$dirname = '../share/';
+					$dir = opendir($dirname);
+
+					while($file = readdir($dir)) {
+					if($file != '.' && $file != '..' && !is_dir($dirname.$file))
+					{
+						$sizeFile = filesize("../share/".$file);
+						$sizeFileName = getSizeName($sizeFile)?>
+					<tr>
+						<td><?php echo($sizeFile);?></td>
+						<td>
+							<b><?php echo($sizeFileName);?></b>
+						</td>
+						<td style="text-align: center; font-size: 22px;padding: 12px;"><?php echo($file);?></td>
+
+						<td style="text-align: right">
+							<a onClick="return confirm('Are you sure you want delete this file <?php echo($file);?> ?');" href="?suppFile=<?php echo($file);?>"><img src="../img/supp.png" width="33" height="33" title="Delete" alt=""/></a>
+						</td>
+					</tr>
+					<?php 
+					}}?>
+					</tbody>
+				</table>
+				<?php // fin while pseudo reserved?>
+			
+			<?php }?>
 		</div>
 		<!-- END #content -->
 		
@@ -135,5 +201,34 @@ if($app_ifSharingFolder!="yes") {
   	<?php require_once("scripts/inc.core.framework.php");// app framework?>
   	<?php require_once("scripts/inc.core.noty.php");// app admin noty?>
 	<?php require_once("scripts/inc.core.notyUp.php");// app personal noty?>
+	<script>
+		// while pseudo and email
+		$(document).ready( function () {
+			$('#table_simple').DataTable( {
+				"aaSorting": [0,'desc'],// debut à 0
+				"pagingType": "full_numbers",
+				"pageLength": 100,
+				"language": {
+				"search": "<?php echo($tr_text_tables_menu_search);?>",
+				"zeroRecords": "<?php echo($tr_text_tables_menu_zeroRecords);?>",
+				"info": "<?php echo($tr_text_tables_menu_info);?> _PAGE_ <?php echo($tr_text_tables_menu_of);?> _PAGES_",
+				"lengthMenu": "<?php echo($tr_text_tables_menu_lengthMenu);?> _MENU_ <?php echo($tr_text_tables_menu_lengthMenu2);?>",
+				"paginate": {
+					"first":      "<?php echo($tr_text_tables_menu_first);?>",
+					"last":       "<?php echo($tr_text_tables_menu_last);?>",
+					"next":       "<?php echo($tr_text_tables_menu_next);?>",
+					"previous":   "<?php echo($tr_text_tables_menu_previous);?>"
+					},
+				},
+				"aoColumns": [
+				{ "bVisible": false, "bSortable": false, "sWidth": "20px", "bSearchable": false },
+				{ "bVisible": true, "bSortable": false, "sWidth": "40px", "bSearchable": false },
+				{ "bVisible": true, "bSortable": true, "sWidth": "200px", "bSearchable": true },
+				{ "bVisible": true, "bSortable": false, "sWidth": "20px", "bSearchable": false }
+				
+				],
+			} );
+		} );
+	</script>
 </body>
 </html>

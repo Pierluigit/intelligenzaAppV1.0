@@ -8,7 +8,7 @@
 //////////////////////////////////////////
 // delete folder and content
 //////////////////////////////////////////
-function delete_directory($dirname) {
+function deleteDirectory($dirname) {
          if (is_dir($dirname))
            $dir_handle = opendir($dirname);
      if (!$dir_handle)
@@ -18,7 +18,7 @@ function delete_directory($dirname) {
                 if (!is_dir($dirname."/".$file))
                      unlink($dirname."/".$file);
                 else
-                     delete_directory($dirname.'/'.$file);
+                     deleteDirectory($dirname.'/'.$file);
            }
      }
      closedir($dir_handle);
@@ -26,6 +26,30 @@ function delete_directory($dirname) {
      return true;
 }
 //////////////////////////////////////////
+
+//////////////////////////////////////////
+//////////////////////////////////////////
+// copy folder and content
+//////////////////////////////////////////
+function copieRep ($orig,$dest) { 
+  mkdir ($dest,0755);
+  $dir = dir($orig); 
+  while ($entry=$dir->read()) { 
+    $pathOrig = "$orig/$entry"; 
+    $pathDest = "$dest/$entry"; 
+    // repertoire ->copie récursive
+    if (is_dir($pathOrig) and (substr($entry,0,1)<>'.')) copieRep ($pathOrig,$pathDest);     
+   // fichier -> copie simple
+   if (is_file($pathOrig) and ($pathDest<>'') and ($fp=fopen($pathOrig,'rb'))) { 
+      $buf = fread($fp,filesize($pathOrig)); 
+      $cop = fopen($pathDest,'ab+'); 
+      fputs ($cop,$buf); 
+      fclose ($cop); 
+      fclose ($fp); 
+    } 
+  } 
+  $dir->close(); 
+} 
 
 //////////////////////////////////////////
 //////////////////////////////////////////
@@ -178,9 +202,75 @@ function is_connected()
 
 
 
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/*---------------------------------------------------------------*/
+/*
+    Titre : Calcul la taille d'un dossier en Octet                                                                        
+                                                                                                                          
+    URL   : https://phpsources.net/code_s.php?id=688
+    Auteur           : miistracy                                                                                          
+    Date édition     : 22 Aout 2013                                                                                       
+    Date mise à jour : 21 Aout 2019                                                                                      
+    Rapport de la maj:                                                                                                    
+    - fonctionnement du code vérifié                                                                                    
+*/
+/*---------------------------------------------------------------*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+function getSizeRep($Rep)
+{
+	$Racine=opendir($Rep);
+	$Taille=0;
+	while($Dossier = readdir($Racine))
+	{
+	  if ( $Dossier != '..' And $Dossier !='.' )
+	  {
+		//Ajoute la taille du sous dossier
+		if(is_dir($Rep.'/'.$Dossier)) $Taille += getSizeRep($Rep.'/'.
+$Dossier);
+		//Ajoute la taille du fichier
+		else $Taille += filesize($Rep.'/'.$Dossier);
 
-
-
+	  }
+	}
+	closedir($Racine);
+	return $Taille;
+}
+//$sizeProject = getSizeRep('../../');
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+function getSizeName($octet)
+{
+    // Array contenant les differents unités 
+    $unite = array(' octet',' Ko',' Mo',' Go');
+    
+    if ($octet < 1000) // octet
+    {
+        return $octet.$unite[0];
+    }
+    else 
+    {
+        if ($octet < 1000000) // ko
+        {
+            $ko = round($octet/1024,2);
+            return $ko.$unite[1];
+        }
+        else // Mo ou Go 
+        {
+            if ($octet < 1000000000) // Mo 
+            {
+                $mo = round($octet/(1024*1024),2);
+                return $mo.$unite[2];
+            }
+            else // Go 
+            {
+                $go = round($octet/(1024*1024*1024),2);
+                return $go.$unite[3];    
+            }
+        }
+    }
+}
 
 
 

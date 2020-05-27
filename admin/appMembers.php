@@ -198,7 +198,7 @@ if(isset($_GET['permanentlyDeleteMember'])) {
 	// delete sellPoints
 	
 	// delete folder
-	delete_directory("../members/id_".$idMember."");
+	deleteDirectory("../members/id_".$idMember."");
 	///////////////////////////////////////////////
 	// delete session delete
 	unset($_SESSION['suppMember']);

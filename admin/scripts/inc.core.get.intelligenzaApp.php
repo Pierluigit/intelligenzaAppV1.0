@@ -161,5 +161,29 @@ $dateActuelOrgi = date('Y')."-".date('m')."-".date('d');
 <?php
 ///////////////////////////////////////////
 ///////////////////////////////////////////
+// get app limit size my folder with name mo ko go
+//$app_limitSizePublicFolder = getSizeName($app_limitSizePublicFolderOctet);
+	
+
+////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////// 
+// get size folder user and percent free
+////////////////////////////////////////////////////////////
+$sizeFolderShare = getSizeRep('../share/');
+$sizeNameFolderShare = getSizeName($sizeFolderShare);
+//$app_limitSizePublicFolder = $app_limitSizePublicFolder*100000
+// size used in percent
+$i = round($app_limitSizePublicFolderOctet/$sizeFolderShare,2);
+$e = 100/$i;
+$sizeUsedShare = round($e,2);
+
+
+
+
+
+
+
+
+
 
 ?>

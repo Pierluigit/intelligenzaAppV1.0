@@ -98,11 +98,13 @@ require_once("admin/scripts/inc.core.intelligenza.php");
 						<label class="control-label" for="password">Password <span class="text-danger">*</span></label>
 						<input type="password" name="password" id="password" class="form-control" value="" required />
 					</div>
+					<?php if($app_ifRememberMe=="yes") {?>
 					<div class="m-b-10">
 						<div class="checkbox-inline">
 							<input type="checkbox" name="rememberme" id="rememberme" value="2"> <label for="rememberme">Remember me</label>
 						</div>
 					</div>
+					<?php }?>
 					<a href="lostPassword.php" class="pull-right">Forgot your ID or password?</a>
 					<button type="submit" name="btn_login" class="btn btn-primary">Sign In</button>
 				</form>

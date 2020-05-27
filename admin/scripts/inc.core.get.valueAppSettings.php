@@ -43,6 +43,7 @@ if( $getResult = $dbRequest->fetch() ) {
 	$set_logoPdfProject = $getResult->logoPdfProject;
 	$set_dateCountDownProject = $getResult->dateCountDownProject;
 	$set_sinceOrUntilCountDownProject = $getResult->sinceOrUntilCountDownProject;
+	$set_ifRememberMe = $getResult->ifRememberMe;
 	$set_timeRememberMe = $getResult->timeRememberMe;
 	$set_timeConnection = $getResult->timeConnection;
 	$set_limitTimeProcessDoubleAndLost = $getResult->limitTimeProcessDoubleAndLost;
