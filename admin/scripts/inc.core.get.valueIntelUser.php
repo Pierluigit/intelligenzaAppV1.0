@@ -111,18 +111,7 @@ while( $unResultat_noty = $resultats_noty->fetch() ) {
 	}
 }
 
-////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////// 
-// get size folder user and percent free
-////////////////////////////////////////////////////////////
-$sizeFolderUser = getSizeRep('../members/id_'.$idUser.'/myFolder/');
-$sizeNameFolderUser = getSizeName($sizeFolderUser);
 
-// size used in percent
-$i = round($app_limitSizeMyFolderOctet/$sizeFolderUser,2);
-$e = 100/$i;
-$sizeUsedUser = round($e,2);
-//echo($sizeFolderUser." ".$app_limitSizeMyFolderOctet." ".$sizeUsedUser."%");exit();
 
 
 

@@ -333,9 +333,6 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
   	<?php require_once("scripts/cp/inc.template_head.php");?>
 	<link href="assets/plugins/map/jquery-jvectormap/jquery-jvectormap.css" rel="stylesheet" />
-	
-	
-	
 	<style>
 		table.dataTable tbody tr.odd {
 			
@@ -347,8 +344,11 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 			
 		}
 	</style>
-	
 	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN CUSTOM CSS STYLE ================== -->
+	<?php require_once("scripts/cp/inc.head.customCss.php");// custom css ?>
+	<!-- ================== END CUSTOM CSS STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="assets/plugins/loader/pace/pace.min.js"></script>

@@ -64,6 +64,10 @@ require_once("scripts/inc.core.intelligenza.php");
 	<link href="assets/plugins/form/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
 	<link href="assets/plugins/form/summernote/summernote.css" rel="stylesheet" />
 	
+	<!-- ================== BEGIN CUSTOM CSS STYLE ================== -->
+	<?php require_once("scripts/cp/inc.head.customCss.php");// custom css ?>
+	<!-- ================== END CUSTOM CSS STYLE ================== -->
+	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="assets/plugins/loader/pace/pace.min.js"></script>
 	<!-- ================== END BASE JS ================== -->

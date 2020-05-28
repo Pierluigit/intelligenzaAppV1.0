@@ -7,7 +7,6 @@
 <link href="<?php echo($app_urlRoot);?>/admin/assets/css/theme/default.css" rel="stylesheet" id="theme" />
 
 <link href="<?php echo($app_urlRoot);?>/css/customAlertBox.css" rel="stylesheet" />
-
 <link href="<?php echo($app_urlRoot);?>/css/font-awesome-animation.min.css" rel="stylesheet">
 
 <style>

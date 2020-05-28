@@ -380,12 +380,12 @@ if(isset($_GET['suppVideo'])) {
 				<!-- END profile-header-content -->
 				<!-- BEGIN profile-header-tab -->
 				<ul class="profile-header-tab nav nav-tabs">
-					<!--<li class="nav-item"><a href="#profile-post" class="nav-link" data-toggle="tab">POSTS</a></li>-->
+					<li class="nav-item"><a href="#profile-post" class="nav-link" data-toggle="tab">POSTS</a></li>
 					<li class="nav-item"><a href="#profile-about" class="nav-link <?php if((!isset($_GET['editPhoto']))&&(!isset($_GET['editVideo']))&&(!isset($_GET['editConnection']))) {?>active<?php }?>" data-toggle="tab">ABOUT</a></li>
 					<li class="nav-item"><a href="#profile-photos" class="nav-link <?php if(isset($_GET['editPhoto'])) {?>active<?php }?>" data-toggle="tab">PHOTOS</a></li>
 					<li class="nav-item"><a href="#profile-videos" class="nav-link <?php if(isset($_GET['editVideo'])) {?>active<?php }?>" data-toggle="tab">VIDEOS</a></li>
+					<li class="nav-item"><a href="#profile-friends" class="nav-link" data-toggle="tab">FRIENDS</a></li>
 					<li class="nav-item"><a href="#profile-connection" class="nav-link <?php if(isset($_GET['editConnection'])) {?>active<?php }?>" data-toggle="tab">CONNECTION</a></li>
-					<!--<li class="nav-item"><a href="#profile-friends" class="nav-link" data-toggle="tab">FRIENDS</a></li>-->
 				</ul>
 				<!-- END profile-header-tab -->
 			</div>

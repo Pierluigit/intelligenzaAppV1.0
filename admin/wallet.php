@@ -65,6 +65,10 @@ if($app_ifMembersUseWallet!="yes") {
   	<?php require_once("scripts/cp/inc.template_head.php");?>
 	<!-- ================== END BASE CSS STYLE ================== -->
 	
+	<!-- ================== BEGIN CUSTOM CSS STYLE ================== -->
+	<?php require_once("scripts/cp/inc.head.customCss.php");// custom css ?>
+	<!-- ================== END CUSTOM CSS STYLE ================== -->
+	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="assets/plugins/loader/pace/pace.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
