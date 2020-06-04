@@ -105,14 +105,20 @@ require_once("scripts/inc.core.intelligenza.php");
 						<?php if($avatarUser!="") {?>
 						<img src="../members/id_<?php echo($idUser);?>/img/<?php echo($avatarUser);?>" alt="" />
 						<?php }else {?>
-						<img src="<?php echo($app_urlRoot);?>/img/avatar.png" alt="" />
+							<?php if($app_avatarProfile!="") {// user doesn't have own avatar?>
+								<img src="<?php echo($app_urlRoot);// choice admin?>/images/logo/<?php echo($app_avatarProfile);?>" alt="" />
+							<?php }else {?>
+								<img src="<?php echo($app_urlRoot);// default?>/img/avatar.png" alt="" />
+							<?php }?>
 						<?php }?>
 					</div>
 					<!-- END profile-header-img -->
 					<!-- BEGIN profile-header-info -->
 					<div class="profile-header-info">
-						<h4 class="m-t-sm"><?php echo($pseudoUser);?></h4>
-						<p class="m-b-sm"><?php echo($rightsUser);?> <?php echo($subRightsUser);?><br><?php echo($fonctionUser);?></p>
+						<h4 class="m-t-sm" id="pseudoUser"><?php echo($pseudoUser);?></h4>
+						<p class="m-b-sm"><?php echo($rightsUser);?> <?php echo($subRightsUser);?><br>
+							<span id="jobUser"><?php echo($jobUser);?></span>
+						</p>
 					</div>
 					<!-- END profile-header-info -->
 				</div>

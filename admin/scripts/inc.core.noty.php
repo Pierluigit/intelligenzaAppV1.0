@@ -147,6 +147,105 @@ if(isset($_SESSION['blockId'])) { //alert('youpiii');
 </div>
 <!-- END modal -->
 <?php }?>
+
+<?php 
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// noty member
+////////////////////////////////////////////////////////////////////
+if((isset($_SESSION['notyM'])) && ($page=="app_profileEdit")) { //alert('youpiii');
+	$idMemberCode = $_SESSION['notyM'];
+	$idMember = getSingleValue("members", "idMCode", $idMemberCode, "idMember"); // table, where field, value, columnName
+	// recup infos
+	require_once("scripts/inc.core.get.valueMember.php");
+	require_once("scripts/inc.core.get.valueIntelMember.php");
+?>
+<script>
+	$(document).ready( function () {
+		$('#notyM').click();
+	} );
+</script>
+<a href="#notyMember" id="notyM" data-toggle="modal"></a>
+<!-- BEGIN modal -->
+<div class="modal modal-cover modal-inverse fade" id="notyMember">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header p-b-xs">
+				<h3 class="modal-title text-success">Send a Notification to <?php echo($pseudoMember);?>?</h3>
+				<button class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form action="?" method="post">
+				<input type="hidden" name="idMember" value="<?php echo($idMember);?>">
+				<input type="hidden" name="pseudo" value="<?php echo($pseudoMember);?>">
+				<input type="hidden" name="ipBlock" value="<?php echo($ipVisit);?>">
+				<input tabindex="1" class="form-control" type="text" name="title" id="title" <?php if((isset($_POST['notyMember'])) && ($okTitle==false)) {?> style="border: 1px solid #e88d3c;"<?php }?> value="<?php echo($_POST['title']);?>" placeholder="Title" maxlength="64" required />
+				<br>
+				<textarea tabindex="2" class="form-control" name="message" id="message"<?php if((isset($_POST['notyMember'])) && ($okMessage==false)) {?> style="border: 1px solid #e88d3c;"<?php }?> rows="3" placeholder="Message" maxlength="400" required><?php echo($_POST['message']);?></textarea>
+				<br>
+				<input tabindex="3" class="form-control" type="text" name="link" id="link" value="<?php echo($_POST['link']);?>" placeholder="Link" maxlength="255" />
+				<br>
+				<div class="row">
+					<div class="col-md-12">
+						<button type="submit" name="notyMember" class="btn btn-success btn-sm btn-block">Send Noty</button>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-12">
+						<a href="?cancelNotyMember=1"><button type="button" class="btn btn-danger btn-sm btn-block">Abandon</button></a>
+					</div>
+				</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END modal -->
+<?php }?>
+
+<script>
+<?php 
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// Member must have a secure email
+////////////////////////////////////////////////////////////////////
+if(isset($_GET['notyOk'])) {
+	$idMember = $_GET['notyOk'];
+	$pseudoMember = getSingleValue("members", "idMember", $idMember, "pseudo"); // table, where field, value, columnName
+	?>
+	function okNoty() {
+	$.notify({
+		icon: 'fas fa-exclamation-circle',
+		title: '',
+		message: "<?php //echo($tr_text_noty_youMustHaveSecureEmail);?>You've just sent a notification to <?php echo($_SESSION['notyOkToPseudoMember']);?>",
+		url: '',
+		target: '_blank'
+	},{
+		type: "success",
+		allow_dismiss: true,
+		placement: {
+			from: "top",
+			align: "center"
+		},
+		z_index: 10031,
+		delay: 7000,
+		timer: 9000,
+		url_target: '_blank',
+		mouse_over: null,
+		animate: {
+			enter: 'animated fadeInDown',
+			exit: 'animated fadeOutUp'
+		},
+	});
+	}
+	okNoty();
+	<?php
+}
+?>
+</script>
 <script>
 <?php 
 ////////////////////////////////////////////////////////////////////

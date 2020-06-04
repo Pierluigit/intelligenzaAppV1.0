@@ -13,7 +13,8 @@
 				<?php echo($tr_text_form_newEmail);?> : <?php if($emailChangeUser!="") { echo($emailChangeUser);?> <i class="fas fa-clock warning"></i><?php }?><br><br>
 				<form action="" method="post">
 					<input tabindex="36" class="form-control" name="newEmail" id="newEmail" type="email" value="<?php echo($_POST['newEmail']);?>" placeholder="<?php echo($tr_text_form_newEmail);?>" maxlength="64" required>
-					<input type="submit" class="btn btn-primary" name="btn_changeEmail" value="<?php echo($tr_text_page_members_tab2_t3);?>">
+					<br>
+					<input type="submit" class="btn btn-xs bg-theme btn-block" name="btn_changeEmail" value="<?php echo($tr_text_page_members_tab2_t3);?>">
 				</form><br><br>
 			</td>
 		</tr>
@@ -26,7 +27,7 @@
 				<?php echo($tr_text_form_actualPass);?> : 
 <input tabindex="37" class="form-control" name="passwordActuel" id="passwordActuel" type="password" <?php if((isset($_POST['btn_changePass'])) && ($okNewPass=='nok')) {?> style="border: 3px solid #e88d3c;" <?php }?> value="<?php echo($_POST['passwordActuel']);?>" placeholder="<?php echo($tr_text_form_actualPass);?> *" maxlength="24" required>
 				<br>
-				<a href="javascript:return;" onClick="generatePassword();"><button type="button" class="btn btn-success btn-block">Generate Secure Password</button></a><br>
+				<a href="javascript:return;" onClick="generatePassword();"><button type="button" class="btn btn-success btn-xs btn-block">Generate Secure Password</button></a><br>
 					
 				<?php echo($tr_text_form_newPass);?> : 
 <input tabindex="38" class="form-control" name="password1" id="password1" type="password" onKeyUp="checkPassword1();" onChange="checkPassword1();" onBlur="checkPassword1();" <?php if((isset($_POST['btn_changePass'])) && ($okNewPass=='nokn')) {?> style="border: 3px solid #e88d3c;" <?php }?> value="" placeholder="<?php echo($tr_text_form_newPass);?> *" maxlength="24" required><span toggle="#password1" class="fa fa-fw fa-eye field-icon passwordShow"></span>
@@ -39,8 +40,8 @@
 <input tabindex="39" class="form-control" name="password2" id="password2" type="password" onKeyUp="checkPassword2();" onChange="checkPassword2();" onBlur="checkPassword2();" <?php if((isset($_POST['btn_changePass'])) && ($okNewPass=='nokn')) {?> style="border: 3px solid #e88d3c;" <?php }?> value="" placeholder="<?php echo($tr_text_form_confirmNewPass);?> *"  maxlength="24" required>
 
 				
-
-				<input type="submit" class="btn btn-primary" name="btn_changePass" value="<?php echo($tr_text_form_btn_changePass);?>">
+				<br>
+				<input type="submit" class="btn btn-xs bg-theme btn-block" name="btn_changePass" value="<?php echo($tr_text_form_btn_changePass);?>">
 				</form><br>
 			</td>
 		</tr>

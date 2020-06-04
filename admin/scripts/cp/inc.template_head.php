@@ -34,6 +34,11 @@
 		font-size:19px;
 		color: antiquewhite !important;
 	}
+	
+	.post-content {
+		color: black;
+	}
+	
 </style>
 <script>
 	//$("input").focusin.css={"border-color:red"}
@@ -295,6 +300,9 @@
 	}
 	.black {
 		color: black;
+	}
+	.white {
+		color: white;
 	}
 	.dateTimeHeader {
 		height: 45px;

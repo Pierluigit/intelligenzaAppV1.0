@@ -18,7 +18,7 @@
 				<div class="info">
 					<h4 id="pseudoUser2"><?php echo($pseudoUser);?></h4>
 					<p><?php echo($rightsUser);?> <?php echo($subRightsUser);?><br>
-						<span id="jobUser2"><?php echo($jobUser);?>
+						<span id="jobUser2"><?php echo($jobUser);?></span>
 					</p>
 				</div>
 			</li>
@@ -77,14 +77,13 @@
 					<i class="fas fa-users"></i>
 					<span>Gathering Place</span>
 				</a>
-				<ul class="sub-menu">
-					
+				<ul class="sub-menu"> 
 					<li <?php if($page=="app_gathering") {?>class="active"<?php }?>><a href="gathering.php">Reception</a></li>
-					<li <?php if($page=="app_gatheringSocialCircles") {?>class="active"<?php }?>><a href="gatheringSocialCircles.php">Social Circles</a></li>
-					<li <?php if($page=="app_gatheringEvents") {?>class="active"<?php }?>><a href="gatheringEvents.php">Events</a></li>
+					<li <?php if($page=="app_gatheringSocialCircles") {?>class="active"<?php }?>><a href="gatheringSocialCircles.php">Local Circles</a></li>
+					<li <?php if($page=="app_gatheringPeople") {?>class="active"<?php }?>><a href="gatheringPeople.php">People</a></li>
 					<li <?php if($page=="app_gatheringLabels") {?>class="active"<?php }?>><a href="gatheringLabels.php">Labels</a></li>
+					<li <?php if($page=="app_gatheringEvents") {?>class="active"<?php }?>><a href="gatheringEvents.php">Events</a></li>
 					<li <?php if($page=="app_gatheringDate") {?>class="active"<?php }?>><a href="gatheringDate.php">Date</a></li>
-					
 					<li <?php if($page=="app_gatheringAdvertisements") {?>class="active"<?php }?>><a href="gatheringAdvertisements.php">Advertisements</a></li>
 				</ul>
 			</li>

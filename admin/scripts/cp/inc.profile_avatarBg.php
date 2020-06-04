@@ -1,4 +1,10 @@
-<h4 id="photos">Gestion de l'avatar et du background</h4>
+<table id="photos">
+<thead>
+	<tr>
+		<th colspan="2">Gestion de l'avatar et du background</th>
+	</tr>
+</thead>
+</table>
 Taille suggerée BG 1920x699 pixel and Avatar 444x444 pixel<br><br>
 <?php if($avatarUser!="") {?>
 <a href="?suppAvatar=1"><button class="btn btn-xs btn-danger"><i class="tim-icons icon-trash-simple"></i> Supp. Avatar</button></a>
@@ -57,7 +63,7 @@ if($file != '.' && $file != '..' && !is_dir($dirname.$file))
 closedir($dir);
 ?>
 <br><br><hr>
-<a href="?editPhoto=1"><button type="text" class="btn btn-primary btn-block">Refresh to manage your upload</button></a><br>
+<a href="?editPhoto=1"><button type="text" class="btn btn-xs bg-theme btn-block">Refresh to manage your upload</button></a><br>
 
 <div class="row dropzone-previews">
 	<div class="col-md-12 dz-preview">

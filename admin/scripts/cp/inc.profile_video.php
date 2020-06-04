@@ -1,6 +1,36 @@
-<h4 id="photos">Gestion des Vidéos</h4>
+<table id="photos">
+<thead>
+	<tr>
+		<th colspan="2">Manage Video</th>
+	</tr>
+</thead>
+</table>
+
+
+<br><br><hr>
+<a href="?editPhoto=1"><button type="text" class="btn btn-xs bg-theme btn-block">Refresh to manage your upload</button></a><br>
+
+<div class="row dropzone-previews">
+	<div class="col-md-12 dz-preview">
+		<!-- PAGE CONTENT BEGINS -->
+		<div id="dropzoneVideo"><!--scripts/uploadPhotoGirl.php-->
+		  <form  action="?" class="dropzone" method="post" enctype="multipart/form-data">
+			<!--<input type="hidden" name="idGirl" value="<?php //echo($idGirl);?>">-->
+			<input type="hidden" name="recVideoUser" value="<?php echo($idUser);?>">
+			  <!--<input type="file" name="file" />-->
+			  <!--<p style="text-align:center;"><i class="fas fa-cloud-upload-alt fa-5x" style="color:#000000"></i><br>Déposer ici tes photos !</p>-->
+			</form>
+		</div><!-- PAGE CONTENT ENDS -->
+	</div><!-- /.col -->
+</div><!-- /.row -->
+<br><hr>
+
+
+
+
+
 <form action="?" method="post">
-<!--<input tabindex="1" class="form-control" type="text" name="name" id="name" value="" placeholder="Name" maxlength="60" required />-->
+<input tabindex="1" class="form-control" type="text" name="name" id="name" value="" placeholder="U" maxlength="60" required />
 <textarea tabindex="2" class="form-control" name="iframe" rows="2" placeholder="Iframe" required></textarea>
 <button tabindex="3" type="submit" name="rec_newVideo" class="btn btn-primary btn-sm">New Video</button><br>
 </form>

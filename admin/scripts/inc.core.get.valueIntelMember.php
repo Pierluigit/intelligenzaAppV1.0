@@ -15,9 +15,11 @@ if( $getResult = $dbRequest->fetch() ) {
 	$emailServerMember = $getResult->emailServer;
 	$passEmailServerMember = $getResult->passEmailServer;	
 	$ifNotyUpMember = $getResult->ifNotyUp;
-	$ifPublicProfileMember = $getResult->ifPublicProfile;
+	$ifProfileAllPrivateMember = $getResult->ifProfileAllPrivate;
 	$ifPublicPostMember = $getResult->ifPublicPost;
 	$ifPublicFriendListMember = $getResult->ifPublicFriendList;
+	$ifPublicVideoMember = $getResult->ifPublicVideo;
+	$ifPublicPhotoMember = $getResult->ifPublicPhoto;
 	$ifShowFonctionMember = $getResult->ifShowFonction;
 	$ifShowSkillsMember = $getResult->ifShowSkills;
 	$ifShowAgeMember = $getResult->ifShowAge;
@@ -33,6 +35,7 @@ if( $getResult = $dbRequest->fetch() ) {
 	$ifShowSocialLink2Member = $getResult->ifShowSocialLink2;
 	$ifShowSocialLink3Member = $getResult->ifShowSocialLink3;
 	$ifShowNameMember = $getResult->ifShowName;
+	$ifShowEmailMember = $getResult->ifShowEmail;
 	$ifShowPhoneMember = $getResult->ifShowPhone;
 	$ifShowEntryCodeMember = $getResult->ifShowEntryCode;
 	$ifShowStreetMember = $getResult->ifShowStreet;
@@ -68,9 +71,29 @@ $totalCommentsVotesMember = $connectDBIntelApp->query("select count(idCommentVot
 $totalGalleryMember = $connectDBIntelApp->query("select count(idGallery) from galleries where idMember='$idMember'")->fetchColumn();
 // count labels
 $totalLabelsMember = $connectDBIntelApp->query("select count(idLabel) from labels where idMember='$idMember'")->fetchColumn();
-// count members_friends
-$totalMembersFriendsMember = $connectDBIntelApp->query("select count(id) from members_friends where idMember='$idMember'")->fetchColumn();
 // count posts
 $totalPostsMember = $connectDBIntelApp->query("select count(idPost) from posts where idMember='$idMember'")->fetchColumn();
+// count groups
+$totalGroupsMember = $connectDBIntelApp->query("select count(idGroup) from members_groups where idMember='$idMember' and active='yes'")->fetchColumn();
+// count people blocked
+$totalPeopleBlockedMember = $connectDBIntelApp->query("select count(id) from members_blocked where idMember='$idMember'")->fetchColumn();
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// count how many friends
+////////////////////////////////////////////////////////////
+$totalFriendsMember=0;
+// while people who want to be friend with member
+$dbRequest_friends=$connectDBIntelApp->query("select * from members_friends where idMemberFriend='$idMember'");
+$dbRequest_friends->setFetchMode(PDO::FETCH_OBJ);
+while( $getResult_friends = $dbRequest_friends->fetch() ) {
+	$idFriend = $getResult_friends->idMember;
+	// check if him too
+	$dbRequest_friendToo=$connectDBIntelApp->query("select * from members_friends where idMember='$idMember' and idMemberFriend='$idFriend'");
+	$dbRequest_friendToo->setFetchMode(PDO::FETCH_OBJ);
+	if( $getResult_friendToo = $dbRequest_friendToo->fetch() ) {
+		// count friends reciprocal
+		$totalFriendsMember+=1;
+	}
+}
 
 ?>

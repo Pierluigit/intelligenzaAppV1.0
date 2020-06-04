@@ -1,7 +1,8 @@
 <?php 
 $dbRequest=$connectDBIntelApp->query("select * from members where idMember='$idUser'");
 $dbRequest->setFetchMode(PDO::FETCH_OBJ);
-if( $getResult = $dbRequest->fetch() ) {	
+if( $getResult = $dbRequest->fetch() ) {
+	$idMCodeUser = $getResult->idMCode;
 	$pseudoUser = $getResult->pseudo;
 	$emailUser = $getResult->email;
 	$passwordUser = $getResult->password;

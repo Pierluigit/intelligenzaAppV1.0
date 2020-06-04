@@ -879,7 +879,6 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 	<script>
 		$(document).ready(function() {
 			App.init();
-			Analytics.init();
 		});
 	</script>
   	<?php require_once("scripts/inc.core.framework.php");// app framework?>
@@ -904,6 +903,7 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 					"previous":   "<?php echo($tr_text_tables_menu_previous);?>"
 					},
 				},
+				"autoWidth": false,
 				"aoColumns": [
 				{ "bVisible": true, "bSortable": false, "sWidth": "20px", "bSearchable": false },
 				{ "bVisible": true, "bSortable": true, "sWidth": "20px", "bSearchable": true },
@@ -936,6 +936,7 @@ if((isset($_GET['whileMembers'])) || (isset($_GET['whilePseudo'])) || (isset($_G
 					"previous":   "<?php echo($tr_text_tables_menu_previous);?>"
 					},
 				},
+				"autoWidth": false,
 				"aoColumns": [
 				{ "bVisible": true, "bSortable": false, "sWidth": "20px", "bSearchable": false },
 				{ "bVisible": false, "bSortable": false, "sWidth": "20px", "bSearchable": false },

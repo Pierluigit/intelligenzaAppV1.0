@@ -171,11 +171,15 @@ if(isset($_POST['btn_signup'])) {
 	// genere une key unique pour validation de l'email par user
 	$validationEmailCode = md5(rand(00000001, 99999999));
 	
+	// generate id unique to mask real id
+	$idMCode = generateStrongPassword();
+	$idMCode = md5($idMCode);
+	
 	// test avant insertion dans la base 
 	if(($okMailInscrit==true) && ($okPseudoInscrit==true) && ($okPassInscrit==true) && ($okConditionInscrit==true) && ($okCaptcha==true)) { //echo('youpi rec new enfin : '.$passwordInscrit); exit(0);
 		//exit('youpiiiiiiiiii');
 		// inserer membre
-		$connectDBIntelApp->exec("insert into members (validationEmailCode, pseudo, email, ifEmailConfirmed, password) value ('$validationEmailCode', '$pseudoInscrit', '$emailInscrit', 'no', '$passwordInscrit')");
+		$connectDBIntelApp->exec("insert into members (validationEmailCode, pseudo, email, ifEmailConfirmed, password, idMCode) value ('$validationEmailCode', '$pseudoInscrit', '$emailInscrit', 'no', '$passwordInscrit', '$idMCode')");
         
  		// envois des email de bienvenue avec instructions
 		require_once("admin/scripts/inc.core.languagesTranslation.handler.php");

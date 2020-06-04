@@ -55,7 +55,7 @@ function copieRep ($orig,$dest) {
 //////////////////////////////////////////
 // generate strong password
 //////////////////////////////////////////
-function generateStrongPassword($length = 11, $add_dashes = false, $available_sets = 'luds') 
+function generateStrongPassword ($length = 11, $add_dashes = false, $available_sets = 'luds') 
 {
 	$sets = array();
 	if(strpos($available_sets, 'l') !== false)
@@ -272,15 +272,30 @@ function getSizeName($octet)
     }
 }
 
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+// get single value 
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+function getSingleValue($table, $field, $value, $columnName) {
+	// connect db
+	require("scripts/inc.core.connectDB.php");
+	// anti hack on $value
+	require("scripts/inc.core.antiHack.php");
+	// limit max 11 characters like idMCode
+	if(strlen($value)==32) {
+		// select 
+		$dbRequest=$connectDBIntelApp->query("select * from ".$table." where ".$field."='$value'");
+		$dbRequest->setFetchMode(PDO::FETCH_OBJ);
+		if( $getResult = $dbRequest->fetch() ) {	
+			$result = $getResult->$columnName;
+		}
+	}
+	return $result;
+}
 
-
-
-
-
-
-
-
-
+/*$singleValue = getSingleValue("members", "idMember", "1", "pseudo"); // table, where field, value, columnName
+echo("result ".$singleValue);exit(0);*/
 
 
 ?>

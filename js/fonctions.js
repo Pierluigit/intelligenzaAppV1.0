@@ -347,7 +347,7 @@ function rec_fieldMemberIntel(idMember, field) { //alert("success");//debug
 	var value = document.getElementById(field).value;
 	var type = document.getElementById(field).type;
 	// check which field
-	if(field!="ifNotyUp") {
+	if((field!="ifNotyUp")&&(field!="ifProfileAllPrivate")) { 
 		if(type=="checkbox") {
 			if( $('input[name='+field+']').is(':checked') ){
 				value = "no";
@@ -656,6 +656,40 @@ function rec_fieldCountry(idCountry, field) { //alert("success");//debug
 	$.ajax(
 	{
 	url : "scripts/inc.core.rec.fieldCountry.php",
+	type: "POST",
+	data : formData,
+	success: function(data)
+	{
+		document.getElementById('confirm_'+field).innerHTML = ""+ data + "";
+		$("#confirm_"+field).css("opacity", "100"); 
+		function closeConfirme() {
+			$('#confirm_'+field).animate({opacity: 0},1000);
+		}
+		setTimeout(closeConfirme, 4000);
+	},
+	error: function()
+	{
+		document.getElementById('confirm_'+field).innerHTML = 'Error ajax !';
+		$("#confirm_"+field).css("opacity", "100"); 
+		function closeConfirme() {
+			$('#confirm_'+field).animate({opacity: 0},1000);
+		}
+		setTimeout(closeConfirme, 4000);
+	}
+	});
+}
+
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// rec fields tags members friend
+////////////////////////////////////////////////////////////////////
+function rec_fieldTagsFriends(idUser, idFriend, i) { //alert("success");//debug
+	"use strict";
+	var value = document.getElementById('tags_'+i).value;
+	var formData = {idUser:idUser, idFriend:idFriend, value:value};
+	$.ajax(
+	{
+	url : "scripts/inc.core.rec.fieldTagsFriends.php",
 	type: "POST",
 	data : formData,
 	success: function(data)

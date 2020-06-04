@@ -631,7 +631,7 @@ if(isset($_GET['deleteNoty'])) {
 		// while noty
 		$(document).ready( function () {
 			$('#table_noty').DataTable( {
-				"aaSorting": [5,'asc'],// debut à 0
+				"aaSorting": [5,'desc'],// debut à 0
 				"pagingType": "full_numbers",
 				"pageLength": 100,
 				"language": {

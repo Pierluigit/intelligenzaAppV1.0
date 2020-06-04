@@ -1,7 +1,7 @@
 <table>
 <thead>
 	<tr>
-		<th colspan="2">Gestion des Galeries</th>
+		<th colspan="2">Manage Galleries</th>
 	</tr>
 </thead>
 </table>
@@ -10,12 +10,12 @@
 <form action="?" method="post">
 <input tabindex="1" class="form-control" type="text" name="nameNewGallery" id="nameNewGallery" value="" placeholder="Name" maxlength="60" required />
 	<br>
-<textarea tabindex="2" class="form-control" name="description" rows="2" placeholder="Descrption"></textarea>
-<button tabindex="3" type="submit" name="rec_newGallery" class="btn btn-primary btn-sm btn-block">New Gallery</button><br>
+<textarea tabindex="2" class="form-control" name="description" rows="2" placeholder="Descrption"></textarea><br>
+<button tabindex="3" type="submit" name="rec_newGallery" class="btn btn-xs bg-theme btn-block">New Gallery</button><br>
 </form>
 <br>
 <!-- ici listing les galleries photos -->
-Liste de mes Galeries<br>
+View my Galleries<br>
 <?php
 $resultatsEditGallery=$connectDBIntelApp->query("select * from galleries where idMember='$idUser'");
 $resultatsEditGallery->setFetchMode(PDO::FETCH_OBJ);
@@ -23,7 +23,7 @@ while( $unResultat = $resultatsEditGallery->fetch() ) {
 	$idGallery = $unResultat->idGallery;
 	$name = $unResultat->name;
 	if($_SESSION['editGallery']!=$idGallery) {?>
-	<a href="?editGallery=<?php echo($idGallery);?>"><button type="button" class="btn btn-default btn-xs"><?php echo($name);?></button></a> 
+	<a href="?editGallery=<?php echo($idGallery);?>"><button type="button" class="btn bg-theme btn-xs"><?php echo($name);?></button></a> 
 <?php }
 }?>
 <br><br>
@@ -80,7 +80,7 @@ if(isset($_SESSION['editGallery'])) {
 	closedir($dirGallery);
 	?>
 	<br><br><hr>
-	<a href="?editPhoto=1"><button type="text" class="btn btn-primary btn-block">Refresh to manage your upload</button></a><br>
+	<a href="?editPhoto=1"><button type="text" class="btn btn-xs bg-theme btn-block">Refresh to manage your upload</button></a><br>
 
 	<div class="row dropzone-previews">
 		<div class="col-md-12 dz-preview">

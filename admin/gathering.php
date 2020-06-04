@@ -101,7 +101,7 @@ if($app_ifGathering!="yes") {
 		<!-- END #sidebar -->
 		
 		<!-- BEGIN #content -->
-		<div id="content" class="content">
+		<div id="content" class="content bgBoxApp">
 			<!-- BEGIN breadcrumb -->
 			<ul class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -110,7 +110,7 @@ if($app_ifGathering!="yes") {
 			<!-- END breadcrumb -->
 			<!-- BEGIN page-header -->
 			<h1 class="page-header">
-				Public Place <small>Profiles, Labels, Events...</small>
+				Gathering Place Reception <small>Profiles, Labels, Events...</small>
 			</h1>
 			<!-- END page-header -->
 			work in progress<br>
