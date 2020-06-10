@@ -85,9 +85,9 @@ if(isset($_SESSION['editGallery'])) {
 	<div class="row dropzone-previews">
 		<div class="col-md-12 dz-preview">
 			<!-- PAGE CONTENT BEGINS -->
-			<div id="dropzoneGallery"><!--scripts/uploadPhotoGirl.php-->
+			<div id="dropzoneGallery">
 			  <form  action="?" class="dropzone" method="post" enctype="multipart/form-data">
-				<!--<input type="hidden" name="idGirl" value="<?php //echo($idGirl);?>">-->
+				
 				<input type="hidden" name="recPhotoGallery" value="<?php echo($editGallery);?>">
 				  <!--<input type="file" name="file" />-->
 				  <!--<p style="text-align:center;"><i class="fas fa-cloud-upload-alt fa-5x" style="color:#000000"></i><br>Déposer ici tes photos !</p>-->

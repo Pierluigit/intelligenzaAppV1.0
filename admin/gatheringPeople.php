@@ -45,6 +45,12 @@ $page = "app_gatheringPeople";
 //////////////////////////////////////////
 // load core intelligenza
 require_once("scripts/inc.core.intelligenza.php");
+//////////////////////////////////////////
+//////////////////////////////////////////
+// check if settings allow it
+if($app_ifGathering!="yes") {
+	header("location:".$app_urlRoot."/admin/");
+}
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->

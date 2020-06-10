@@ -234,7 +234,7 @@ require_once("scripts/inc.core.intelligenza.php");
 				</div>
 				<!-- END col-6 -->
 				<!-- BEGIN col-3 -->
-				<div class="col-lg-3 col-sm-6">
+				<div class="col-lg-3 col-sm-6" <?php if($app_ifGathering!="yes") {?> style="display: none;"<?php }?>>
 					<!-- BEGIN widget -->
 					<div class="widget widget-card inverse-mode with-min-height">
 						<!-- BEGIN widget-card-cover -->
@@ -317,7 +317,7 @@ require_once("scripts/inc.core.intelligenza.php");
 				</div>
 				<!-- END col-3 -->
 				<!-- BEGIN col-3 -->
-				<div class="col-lg-3 col-sm-6">
+				<div class="col-lg-3 col-sm-6"  <?php if($app_ifGathering!="yes") {?> style="display: none;"<?php }?>>
 					<!-- BEGIN widget -->
 					<div class="widget widget-card inverse-mode with-min-height">
 						<a href="gatheringEvents.php">

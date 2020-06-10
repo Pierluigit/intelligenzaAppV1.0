@@ -1,4 +1,4 @@
-<table id="photos">
+<table id="video">
 <thead>
 	<tr>
 		<th colspan="2">Manage Video</th>
@@ -6,17 +6,17 @@
 </thead>
 </table>
 
-
+<br>
 <br><br><hr>
-<a href="?editPhoto=1"><button type="text" class="btn btn-xs bg-theme btn-block">Refresh to manage your upload</button></a><br>
+<a href="?editVideo=1"><button type="text" class="btn btn-xs bg-theme btn-block">Refresh to manage your upload</button></a><br>
 
 <div class="row dropzone-previews">
 	<div class="col-md-12 dz-preview">
 		<!-- PAGE CONTENT BEGINS -->
-		<div id="dropzoneVideo"><!--scripts/uploadPhotoGirl.php-->
-		  <form  action="?" class="dropzone" method="post" enctype="multipart/form-data">
+		<div>
+		  <form id="dropzoneVideo" action="?" class="dropzone" method="post" enctype="multipart/form-data">
 			<!--<input type="hidden" name="idGirl" value="<?php //echo($idGirl);?>">-->
-			<input type="hidden" name="recVideoUser" value="<?php echo($idUser);?>">
+			<input type="hidden" name="recVideoUser" value="<?php //echo($idUser);?>">
 			  <!--<input type="file" name="file" />-->
 			  <!--<p style="text-align:center;"><i class="fas fa-cloud-upload-alt fa-5x" style="color:#000000"></i><br>Déposer ici tes photos !</p>-->
 			</form>
@@ -30,9 +30,9 @@
 
 
 <form action="?" method="post">
-<input tabindex="1" class="form-control" type="text" name="name" id="name" value="" placeholder="U" maxlength="60" required />
-<textarea tabindex="2" class="form-control" name="iframe" rows="2" placeholder="Iframe" required></textarea>
-<button tabindex="3" type="submit" name="rec_newVideo" class="btn btn-primary btn-sm">New Video</button><br>
+<!--<input tabindex="1" class="form-control" type="text" name="name" id="name" value="" placeholder="U" maxlength="60" required /><br>-->
+<textarea tabindex="2" class="form-control" name="iframe" rows="2" placeholder="Iframe" required></textarea><br>
+<button tabindex="3" type="submit" name="rec_newVideo" class="btn btn-xs bg-theme btn-block">New Video</button><br>
 </form>
 <br>
 <div class="m-b-10"><b>Videos (<?php echo($totalVideoUser);?>)</b></div>
@@ -43,7 +43,7 @@ while( $unResultat = $resultats->fetch() ) {
 	$iframeV = $unResultat->iframe;
 	$idVideo = $unResultat->idVideo;?>
 	<?php echo($iframeV);?><br>
-	<a href="?suppVideo=<?php echo($idVideo);?>"><button tabindex="3" class="btn btn-danger btn-sm">Supp. Video</button></a><br><br>
+	<a href="?suppVideo=<?php echo($idVideo);?>"><button tabindex="3" class="btn btn-danger btn-xs">Supp. Video</button></a><br><br>
 <?php }?>
 
 <!--

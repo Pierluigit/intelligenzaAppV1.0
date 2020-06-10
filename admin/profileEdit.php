@@ -284,7 +284,7 @@ if(isset($_POST['recVideoUser'])) {
 	// recup idRequest
 	$idUser = $_POST['recVideoUser'];
 	$ds          = DIRECTORY_SEPARATOR;  //1
-	$storeFolder = '../members/id_'.$idUser.'/video';   //2
+	$storeFolder = '../members/id_1/video';   //2
 
 	if (!empty($_FILES)) {
 		$tempFile = $_FILES['file']['tmp_name'];          //3     
@@ -293,7 +293,7 @@ if(isset($_POST['recVideoUser'])) {
 		$targetFile =  $targetPath. $_FILES['file']['name'];  //5
 		move_uploaded_file($tempFile,$targetFile); //6
 		// insertion dans la base pour email c'est important
-		$connectDBIntelApp->exec("insert into videos (fileName, idMember) value ('$fileName', '$idUser')");
+		$connectDBIntelApp->exec("insert into videos (fileName, idMember) value ('$fileName', '1')");
 	}
 	//header("location:?#photos");
 }
@@ -559,8 +559,8 @@ if(isset($_POST['notyMember'])) {
 				<!-- END profile-header-content -->
 				<!-- BEGIN profile-header-tab -->
 				<ul class="profile-header-tab nav nav-tabs">
-					<!--<li class="nav-item"><a href="#profile-post" class="nav-link <?php //if(isset($_GET['editPost'])) {?>active<?php //}?>" data-toggle="tab">POSTS</a></li>-->
-					<li class="nav-item"><a href="#profile-about" class="nav-link <?php if((!isset($_GET['editPhoto']))&&(!isset($_GET['editVideo']))&&(!isset($_GET['editConnection']))&&(!isset($_GET['editPost']))&&(!isset($_GET['editFriend']))) {?>active<?php }?>" data-toggle="tab">ABOUT</a></li>
+					<!--<li class="nav-item"><a href="#profile-post" class="nav-link <?php //if(isset($_GET['addPost'])) {?>active<?php //}?>" data-toggle="tab">POSTS</a></li>-->
+					<li class="nav-item"><a href="#profile-about" class="nav-link <?php if((!isset($_GET['editPhoto']))&&(!isset($_GET['editVideo']))&&(!isset($_GET['editConnection']))&&(!isset($_GET['addPost']))&&(!isset($_GET['editFriend']))) {?>active<?php }?>" data-toggle="tab">ABOUT</a></li>
 					<li class="nav-item"><a href="#profile-photos" class="nav-link <?php if(isset($_GET['editPhoto'])) {?>active<?php }?>" data-toggle="tab">PHOTOS</a></li>
 					<li class="nav-item"><a href="#profile-videos" class="nav-link <?php if(isset($_GET['editVideo'])) {?>active<?php }?>" data-toggle="tab">VIDEOS</a></li>
 					<li class="nav-item"><a href="#profile-friends" class="nav-link <?php if(isset($_GET['editFriend'])) {?>active<?php }?>" data-toggle="tab">FRIENDS</a></li>
@@ -579,14 +579,14 @@ if(isset($_POST['notyMember'])) {
 						<!-- BEGIN tab-content -->
 						<div class="tab-content p-0">
 							<!-- BEGIN tab-pane -->
-							<div class="tab-pane fade <?php if(isset($_GET['editPost'])) {?>in active<?php }?>" id="profile-post">
+							<div class="tab-pane fade <?php if(isset($_GET['addPost'])) {?>in active<?php }?>" id="profile-post">
 								<?php 
 									require_once("scripts/cp/inc.profile_posts.php");
 								?>
 							</div>
 							<!-- END tab-pane -->
 							<!-- BEGIN tab-pane -->
-							<div class="tab-pane fade <?php if((!isset($_GET['editPhoto'])) && (!isset($_GET['editVideo'])) &&(!isset($_GET['editConnection'])) && (!isset($_GET['editPost'])) && (!isset($_GET['editFriend']))) {?>in active<?php }?>" id="profile-about">
+							<div class="tab-pane fade <?php if((!isset($_GET['editPhoto'])) && (!isset($_GET['editVideo'])) &&(!isset($_GET['editConnection'])) && (!isset($_GET['addPost'])) && (!isset($_GET['editFriend']))) {?>in active<?php }?>" id="profile-about">
 								<?php 
 									require_once("scripts/cp/inc.profile_about.php");
 								?>
@@ -1094,9 +1094,56 @@ if(isset($_POST['notyMember'])) {
   	<?php require_once("scripts/inc.core.noty.php");// app admin noty?>
 	<?php require_once("scripts/inc.core.notyUp.php");// app personal noty?>
 	<script>
+		
 		// while friends
 		$(document).ready( function () {
+			//var table = $('#table_friends').DataTable();
+ 
+			$('#table_friends tbody').on( 'click', 'tr', function () {
+				$(this).toggleClass('selected');
+			} );
+
+			$('#button').click( function () {
+				//alert( table.rows('.selected').data().length +' row(s) selected' );
+			} );
+			
 			$('#table_friends').DataTable( {
+				"select": 'row',
+				buttons: [
+					'selectRows',
+					'selectColumns',
+					'selectCells'
+				],
+				"aaSorting": [2,'asc'],// debut à 0
+				"pagingType": "full_numbers",
+				"pageLength": 100,
+				"language": {
+				"search": "<?php echo($tr_text_tables_menu_search);?>",
+				"zeroRecords": "<?php echo($tr_text_tables_menu_zeroRecords);?>",
+				"info": "<?php echo($tr_text_tables_menu_info);?> _PAGE_ <?php echo($tr_text_tables_menu_of);?> _PAGES_",
+				"lengthMenu": "<?php echo($tr_text_tables_menu_lengthMenu);?> _MENU_ <?php echo($tr_text_tables_menu_lengthMenu2);?>",
+				"paginate": {
+					"first":      "<?php echo($tr_text_tables_menu_first);?>",
+					"last":       "<?php echo($tr_text_tables_menu_last);?>",
+					"next":       "<?php echo($tr_text_tables_menu_next);?>",
+					"previous":   "<?php echo($tr_text_tables_menu_previous);?>"
+					},
+				},
+				"autoWidth": false,
+				
+				"aoColumns": [
+				{ "bVisible": false, "bSortable": false, "sWidth": "10%", "bSearchable": false },
+				{ "bVisible": true, "bSortable": false, "sWidth": "5%", "bSearchable": false },
+				{ "bVisible": true, "bSortable": true, "sWidth": "15%", "bSearchable": true },
+				{ "bVisible": true, "bSortable": false, "sWidth": "50%", "bSearchable": true },
+				{ "bVisible": false, "bSortable": false, "sWidth": "10%", "bSearchable": true },
+				{ "bVisible": true, "bSortable": false, "sWidth": "15%", "bSearchable": false }
+				],
+			} );
+		} );
+		// while friends
+		$(document).ready( function () {
+			$('#table_posts').DataTable( {
 				"select": 'row',
 				buttons: [
 					'selectRows',
@@ -1229,6 +1276,36 @@ if(isset($_POST['notyMember'])) {
 				],
 			} );
 		} );
+		
+		////////////////////////////////////////////////////////////////////////
+		// upload video
+		Dropzone.options.dropzoneVideo = {
+			paramName: "file",
+			maxFilesize: 160000, // MB
+			acceptedFiles: ".mp4, .mov, .jpg"
+		};
+		
+		////////////////////////////////////////////////////////////////////////
+		// upload video
+		Dropzone.options.dropzonePost = {
+			paramName: "file",
+			maxFilesize: 160, // MB
+			acceptedFiles: ".mp4, .mov"
+		};
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</script>
 </body>
 </html>

@@ -49,7 +49,7 @@ require_once("scripts/inc.core.intelligenza.php");
 //////////////////////////////////////////
 // check if settings allow it
 if($app_ifGathering!="yes") {
-	header("location:".$app_urlRoot."");
+	header("location:".$app_urlRoot."/admin/");
 }
 ?>
 <!DOCTYPE html>
