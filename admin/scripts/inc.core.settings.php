@@ -5,14 +5,14 @@
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
 // check if db installed?
-$resultats=$connectDBIntelApp->query("select * from site_settings where idSetting='77'");
-$resultats->setFetchMode(PDO::FETCH_OBJ);
-if( $unResultat = $resultats->fetch() ) { 
-	$set_activeSettingDb = $unResultat->activeDbSettings;
-	$set_urlRoot = $unResultat->urlRoot;
-	$set_nameProject = $unResultat->nameProject;
-	$set_emailContactProject = $unResultat->emailContactProject;
-	$set_emailComEmailProject = $unResultat->emailComEmailProject;
+$dbRequest=$connectDBIntelApp->query("select * from site_settings where idSetting='77'");
+$dbRequest->setFetchMode(PDO::FETCH_OBJ);
+if( $getResult = $dbRequest->fetch() ) { 
+	$set_activeSettingDb = $getResult->activeDbSettings;
+	$set_urlRoot = $getResult->urlRoot;
+	$set_nameProject = $getResult->nameProject;
+	$set_emailContactProject = $getResult->emailContactProject;
+	$set_emailComEmailProject = $getResult->emailComEmailProject;
 	// check if can switch in dynamic settings
 	$okCanUseDynamicSettings = false;
 	$okEmailContactProject = false;
@@ -35,77 +35,78 @@ if( $unResultat = $resultats->fetch() ) {
 //echo("success set dyna ".$set_activeSettingDb." and ".$okCanUseDynamicSettings);exit(0);
 // check if dynamic
 $okSettings = false;
-if(($set_activeSettingDb=="yes") && ($okCanUseDynamicSettings==true)) {
+if(($set_activeSettingDb=="yes") && ($okCanUseDynamicSettings==true)) {// yes it is in dynamic mode
 	// if yes switch setting in dynamic and recup info
-	$resultats=$connectDBIntelApp->query("select * from site_settings where idSetting='77'");
-	$resultats->setFetchMode(PDO::FETCH_OBJ);
-	if( $unResultat = $resultats->fetch() ) {
+	$dbRequest=$connectDBIntelApp->query("select * from site_settings where idSetting='77'");
+	$dbRequest->setFetchMode(PDO::FETCH_OBJ);
+	if( $getResult = $dbRequest->fetch() ) {
 		///////////////////////////////////////////////
 		///////////// set settings in app /////////////
 		///////////////////////////////////////////////
 		$okSettings = true;
-		$app_publicKey = $unResultat->publicKey;
-		$app_privateKey = $unResultat->privateKey;
-		$app_version = $unResultat->app_version;
-		$app_version_date = $unResultat->app_version_date;
+		$app_publicKey = $getResult->publicKey;
+		$app_privateKey = $getResult->privateKey;
+		$app_version = $getResult->app_version;
+		$app_version_date = $getResult->app_version_date;
 		// format date app version
 		$dateJJ = substr($app_version_date, 8, 2);// day  
 		$dateMM = substr($app_version_date, 5, 2);// month 
 		$dateAAAA = substr($app_version_date, 0, 4);// year
 		$app_version_date = $dateJJ."-".$dateMM."-".$dateAAAA;
 		
-		$app_ifActivePsp = $unResultat->ifActivePsp;
+		$app_ifActivePsp = $getResult->ifActivePsp;
 		// if yes recup config psp
 		if($app_ifActivePsp=="yes") {
-			$resultatsPsp=$connectDBIntelApp->query("select * from admin_psp where id='77' and idType='admin'");
-			$resultatsPsp->setFetchMode(PDO::FETCH_OBJ);
-			if( $unResultatPsp = $resultatsPsp->fetch() ) {
-				$app_psp_productionMode = $unResultatPsp->productionMode;
-				$app_psp_pspId = $unResultatPsp->pspId;
-				$app_psp_shaIn = $unResultatPsp->shaIn;
-				$app_psp_shaOut = $unResultatPsp->shaOut;
-				$app_psp_ifUrlBack = $unResultatPsp->ifUrlBack;
-				$app_psp_urlOk = $unResultatPsp->urlOk;
-				$app_psp_urlNok = $unResultatPsp->urlNok;
-				$app_psp_urlException = $unResultatPsp->urlException;
-				$app_psp_urlCancel = $unResultatPsp->urlCancel;
-				$app_psp_logoFileName = $unResultatPsp->logoFileName;
-				$app_psp_urlHome = $unResultatPsp->urlHome;
-				$app_psp_urlCatalogue = $unResultatPsp->urlCatalogue;
-				$app_psp_urlDynmiqueTamplate = $unResultatPsp->urlDynmiqueTamplate;
+			$dbRequestPsp=$connectDBIntelApp->query("select * from admin_psp where id='77' and idType='admin'");
+			$dbRequestPsp->setFetchMode(PDO::FETCH_OBJ);
+			if( $getResultPsp = $dbRequestPsp->fetch() ) {
+				$app_psp_productionMode = $getResultPsp->productionMode;
+				$app_psp_pspId = $getResultPsp->pspId;
+				$app_psp_shaIn = $getResultPsp->shaIn;
+				$app_psp_shaOut = $getResultPsp->shaOut;
+				$app_psp_ifUrlBack = $getResultPsp->ifUrlBack;
+				$app_psp_urlOk = $getResultPsp->urlOk;
+				$app_psp_urlNok = $getResultPsp->urlNok;
+				$app_psp_urlException = $getResultPsp->urlException;
+				$app_psp_urlCancel = $getResultPsp->urlCancel;
+				$app_psp_logoFileName = $getResultPsp->logoFileName;
+				$app_psp_urlHome = $getResultPsp->urlHome;
+				$app_psp_urlCatalogue = $getResultPsp->urlCatalogue;
+				$app_psp_urlDynmiqueTamplate = $getResultPsp->urlDynmiqueTamplate;
 			}
 		}
 		
 		
-		$app_ifKillAllSessionBlockLogin = $unResultat->ifKillAllSessionBlockLogin;
-		$app_ifLimitToComingSoon = $unResultat->ifLimitToComingSoon;
-		$app_ifOnlyUseApp = $unResultat->ifOnlyApp;
-		$app_ifBlockNewRegistration = $unResultat->ifBlockNewRegistration;
+		$app_ifKillAllSessionBlockLogin = $getResult->ifKillAllSessionBlockLogin;
+		$app_ifLimitToComingSoon = $getResult->ifLimitToComingSoon;
+		$app_ifOnlyUseApp = $getResult->ifOnlyApp;
+		$app_ifBlockNewRegistration = $getResult->ifBlockNewRegistration;
 		
-		$app_ifLocalSite = $unResultat->ifLocalSite;
-		$app_urlRoot = $unResultat->urlRoot;
+		$app_ifLocalSite = $getResult->ifLocalSite;
+		$app_urlRoot = $getResult->urlRoot;
 		// used for filemanager
 		$_SESSION['app_urlRoot'] = $app_urlRoot;
-		$app_nameProject = $unResultat->nameProject;
-		$app_faviconProject = $unResultat->faviconProject;
-		$app_logoProject = $unResultat->logoProject;
-		$app_logoHProject = $unResultat->logoHProject;
-		$app_logoEmailProject = $unResultat->logoEmailProject;
-		$app_logoPdfProject = $unResultat->logoPdfProject;
-		$app_emailContactProject = $unResultat->emailContactProject;
-		$app_emailComEmailProject = $unResultat->emailComEmailProject;
-		$app_dateCountDownProject = $unResultat->dateCountDownProject;
-		$app_sinceOrUntilCountDownProject = $unResultat->sinceOrUntilCountDownProject;
-		$app_timeRememberMe = $unResultat->timeRememberMe;
-		$app_timeConnection = $unResultat->timeConnection;
-		$app_limitTimeProcessDoubleAndLost = $unResultat->limitTimeProcessDoubleAndLost;
-		$app_limitTimeBlackList = $unResultat->limitTimeBlackList;
-		$app_ifLimitAge = $unResultat->ifLimitAge;
-		$app_limitAge = $unResultat->limitAge;
-		$app_ifDoubleAuthentification = $unResultat->ifDoubleAuthentification;
-		$app_ifDemandSecurePassword = $unResultat->ifDemandSecurePassword; 
-		$app_ifDemandSecureEmail = $unResultat->ifDemandSecureEmail;
-		$app_secureWebMail = $unResultat->secureWebMail;
+		$app_nameProject = $getResult->nameProject;
+		$app_faviconProject = $getResult->faviconProject;
+		$app_logoProject = $getResult->logoProject;
+		$app_logoHProject = $getResult->logoHProject;
+		$app_logoEmailProject = $getResult->logoEmailProject;
+		$app_logoPdfProject = $getResult->logoPdfProject;
+		$app_emailContactProject = $getResult->emailContactProject;
+		$app_emailComEmailProject = $getResult->emailComEmailProject;
+		$app_dateCountDownProject = $getResult->dateCountDownProject;
+		$app_sinceOrUntilCountDownProject = $getResult->sinceOrUntilCountDownProject;
+		$app_ifRememberMe = $getResult->ifRememberMe;
+		$app_timeRememberMe = $getResult->timeRememberMe;
+		$app_timeConnection = $getResult->timeConnection;
+		$app_limitTimeProcessDoubleAndLost = $getResult->limitTimeProcessDoubleAndLost;
+		$app_limitTimeBlackList = $getResult->limitTimeBlackList;
+		$app_ifLimitAge = $getResult->ifLimitAge;
+		$app_limitAge = $getResult->limitAge;
+		$app_ifDoubleAuthentification = $getResult->ifDoubleAuthentification;
+		$app_ifDemandSecurePassword = $getResult->ifDemandSecurePassword; 
+		$app_ifDemandSecureEmail = $getResult->ifDemandSecureEmail;
+		$app_secureWebMail = $getResult->secureWebMail;
 		// if secure email create links
 		$app_linksSecureWebMail = "";
 		if($app_ifDemandSecureEmail=="yes") {
@@ -117,49 +118,54 @@ if(($set_activeSettingDb=="yes") && ($okCanUseDynamicSettings==true)) {
 		}else {
 			unset($_SESSION['emailNotSecure']);
 		}
-		$app_ifActiveAcceptCookies = $unResultat->ifActiveAcceptCookies;
-		$app_ifLookSelectAndRightClic = $unResultat->ifLookSelectAndRightClic;
-		$app_ifSharingFolder = $unResultat->ifSharingFolder;
-		$app_limitSizePublicFolder = $unResultat->limitSizePublicFolder;
-		$app_ifGathering = $unResultat->ifGathering;
+		$app_ifActiveAcceptCookies = $getResult->ifActiveAcceptCookies;
+		$app_ifLookSelectAndRightClic = $getResult->ifLookSelectAndRightClic;
+		$app_ifSharingFolder = $getResult->ifSharingFolder;
+		$app_limitSizePublicFolder = $getResult->limitSizePublicFolder;
+		// format size
+		$app_limitSizePublicFolderOctet = $app_limitSizePublicFolder*1000000;// get octets
 		
-		$app_ifUseAudio = $unResultat->ifUseAudio;
-		$app_volume = $unResultat->volume;
+		$app_ifGathering = $getResult->ifGathering;
 		
-		$app_bgProfileHeader = $unResultat->bgProfileHeader;
-		/*$app_avatarProfile = $unResultat->bgProfileHeader;*/
-		$app_avatarProfile = $unResultat->avatarProfile;
-		$app_linkColor = $unResultat->linkColor;
-		$app_linkColorOver = $unResultat->linkColorOver;
-		$app_linkColorActive = $unResultat->linkColorActive;
-		$app_linkColorVisited = $unResultat->linkColorVisited;
-		$app_selectionColorBg = $unResultat->selectionColorBg;
-		$app_selectionColor = $unResultat->selectionColor;
+		$app_ifUseAudio = $getResult->ifUseAudio;
+		$app_volume = $getResult->volume;
+		
+		$app_bgProfileHeader = $getResult->bgProfileHeader;
+		/*$app_avatarProfile = $getResult->bgProfileHeader;*/
+		$app_avatarProfile = $getResult->avatarProfile;
+		$app_linkColor = $getResult->linkColor;
+		$app_linkColorOver = $getResult->linkColorOver;
+		$app_linkColorActive = $getResult->linkColorActive;
+		$app_linkColorVisited = $getResult->linkColorVisited;
+		$app_selectionColorBg = $getResult->selectionColorBg;
+		$app_selectionColor = $getResult->selectionColor;
 	
-		$app_bgRegister = $unResultat->bgRegister;
-		$app_bgLogin = $unResultat->bgLogin;
-		$app_bgComingSoon = $unResultat->bgComingSoon;
+		$app_bgRegister = $getResult->bgRegister;
+		$app_bgLogin = $getResult->bgLogin;
+		$app_bgComingSoon = $getResult->bgComingSoon;
 		
-		$app_bgPrivacy = $unResultat->bgPrivacy;
-		$app_bgTerms = $unResultat->bgTerms;
-		$app_bgAirlock = $unResultat->bgAirlock;
-		$app_bgLostPass = $unResultat->bgLostPass;
-		$app_bgFaq = $unResultat->bgFaq;
-		$app_bgContact = $unResultat->bgContact;
+		$app_bgPrivacy = $getResult->bgPrivacy;
+		$app_bgTerms = $getResult->bgTerms;
+		$app_bgAirlock = $getResult->bgAirlock;
+		$app_bgLostPass = $getResult->bgLostPass;
+		$app_bgFaq = $getResult->bgFaq;
+		$app_bgContact = $getResult->bgContact;
 		
-		$app_ifMembersUseKnowledges = $unResultat->ifMembersUseKnowledges;
-		$app_ifMembersUseWallet = $unResultat->ifMembersUseWallet;
-		$app_ifMembersUseLabel = $unResultat->ifMembersUseLabel;
-		$app_ifMembersUseMyFolder = $unResultat->ifMembersUseMyFolder;
-		$app_limitSizeMyFolder = $unResultat->limitSizeMyFolder;
+		$app_ifMembersUseKnowledges = $getResult->ifMembersUseKnowledges;
+		$app_ifMembersUseWallet = $getResult->ifMembersUseWallet;
+		$app_ifMembersUseLabel = $getResult->ifMembersUseLabel;
+		$app_ifMembersUseMyFolder = $getResult->ifMembersUseMyFolder;
+		$app_limitSizeMyFolder = $getResult->limitSizeMyFolder;
+		// format size
+		$app_limitSizeMyFolderOctet = $app_limitSizeMyFolder*1000000;// get octets
 		
-		$app_paypal = $unResultat->paypal;
-		$app_IBAN = $unResultat->IBAN;	
-		$app_BIC = $unResultat->BIC;
+		$app_paypal = $getResult->paypal;
+		$app_IBAN = $getResult->IBAN;	
+		$app_BIC = $getResult->BIC;
 		
-		$app_activeCronTasks = $unResultat->activeCronTasks;	
-		$app_cronReport = $unResultat->cronReport;
-		$app_emailReportCronTasks = $unResultat->emailReportCronTasks;
+		$app_activeCronTasks = $getResult->activeCronTasks;	
+		$app_cronReport = $getResult->cronReport;
+		$app_emailReportCronTasks = $getResult->emailReportCronTasks;
 		
 		//////////////////////////////////////////
 		// format time connection, for debug 
@@ -189,17 +195,15 @@ if(($set_activeSettingDb=="yes") && ($okCanUseDynamicSettings==true)) {
 	}
 }else {
 	///////////////////////////////////////////////
-	///////////////////////////////////////////////
+	/////////////////////////////////////////////// HERE TO START :)
 	// Manual Settings
 	// here the four minimum settings to start *
 	// first of all please fill in all field *
 	///////////////////////////////////////////////
-	// define if the project is local or online
 	///////////////////////////////////////////////
 	///////////////////////////////////////////////
 	//////////////// url root * ///////////////////
 	///////////////////////////////////////////////
-	// works in local ????????????? check
 	// for absolute link need for 404 page head style and function ajax php framework
 	$app_urlRoot = ""; // $_SERVER['HTTP_HOST']
 
@@ -233,6 +237,7 @@ if(($set_activeSettingDb=="yes") && ($okCanUseDynamicSettings==true)) {
 	// since or until
 	$app_sinceOrUntilCountDownProject = "until"; // since or until
 
+	
 
 	///////////////////////////////////////////////
 	///////// control minimum setting /////////////
@@ -249,7 +254,7 @@ if(($set_activeSettingDb=="yes") && ($okCanUseDynamicSettings==true)) {
 	
 	if (preg_match("/^[\w\.\w]+@[\w\.-]+\.[a-z]{2,10}$/i", $app_emailContactProject) ) {
 		$ok_emailContactProject = true;
-		$app_emailContactProject = strtolower($app_emailContactProject);
+		$$app_emailContactProject = strtolower($$app_emailContactProject);
 	}
 	if (preg_match("/^[\w\.\w]+@[\w\.-]+\.[a-z]{2,10}$/i", $app_emailComEmailProject) ) {
 		$okEmailComEmailProject = true;
@@ -260,7 +265,7 @@ if(($set_activeSettingDb=="yes") && ($okCanUseDynamicSettings==true)) {
 		$okSettings = true;
 	}else {
 		// if setteing file is not fill in
-		header("location:infos/install.html");
+		//header("location:infos/install.php");
 	}
 }
 
