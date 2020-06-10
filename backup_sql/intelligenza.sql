@@ -2,8 +2,8 @@
 -- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql16j15.db.hostpoint.internal
--- Generation Time: Jun 10, 2020 at 07:28 PM
+-- Host: 
+-- Generation Time: Jun 10, 2020 at 10:22 PM
 -- Server version: 10.1.45-MariaDB
 -- PHP Version: 7.2.31
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `escortgi_alpha`
+-- Database: `intelligenza`
 --
 
 -- --------------------------------------------------------
@@ -1319,7 +1319,7 @@ CREATE TABLE `site_settings` (
 --
 
 INSERT INTO `site_settings` (`idSetting`, `activeDbSettings`, `--- app ---`, `publicKey`, `privateKey`, `app_version`, `app_version_date`, `-- config --`, `ifActivePsp`, `ifKillAllSessionBlockLogin`, `ifLimitToComingSoon`, `ifOnlyApp`, `ifBlockNewRegistration`, `ifLocalSite`, `urlRoot`, `nameProject`, `faviconProject`, `logoProject`, `logoHProject`, `logoEmailProject`, `logoPdfProject`, `emailContactProject`, `emailComEmailProject`, `dateCountDownProject`, `sinceOrUntilCountDownProject`, `ifRememberMe`, `timeRememberMe`, `timeConnection`, `limitTimeProcessDoubleAndLost`, `limitTimeBlackList`, `ifLimitAge`, `limitAge`, `ifDoubleAuthentification`, `ifDemandSecurePassword`, `ifDemandSecureEmail`, `secureWebMail`, `ifActiveAcceptCookies`, `ifLookSelectAndRightClic`, `ifSharingFolder`, `limitSizePublicFolder`, `ifGathering`, `--- audio ---`, `ifUseAudio`, `volume`, `-- back end styles --`, `linkColor`, `linkColorOver`, `linkColorActive`, `linkColorVisited`, `selectionColorBg`, `selectionColor`, `bgProfileHeader`, `avatarProfile`, `-- front end styles --`, `bgRegister`, `bgLogin`, `bgComingSoon`, `bgPrivacy`, `bgTerms`, `bgAirlock`, `bgLostPass`, `bgFaq`, `bgContact`, `--- users ---`, `ifMembersUseKnowledges`, `ifMembersUseWallet`, `ifMembersUseLabel`, `ifMembersUseMyFolder`, `limitSizeMyFolder`, `-- money --`, `paypal`, `IBAN`, `BIC`, `-- cron tasks --`, `activeCronTasks`, `cronReport`, `emailReportCronTasks`) VALUES
-(77, 'yes', '', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'v1.0', '2020-05-01 16:18:33', '', 'no', 'no', 'no', 'no', 'no', 'no', 'https://intelligenza.pro', 'intelligenza', 'intel/iconeColor_devPerso.png', 'intel/logoCouleurs_600.png', 'intel/logoApp.png', 'intel/logoCouleurs_600.png', 'intel/logoApp.png', 'team@intelligenza.pro', 'team@intelligenza.pro', '2020,04,11', 'until', 'yes', 86400, 300, 180, 86400, 'no', '14', 'no', 'no', 'no', 'protonmail.com/tutanota.com/posteo.de/mailfence.com/startmail.com/mailbox.org', 'no', 'yes', 'no', 1000, 'no', '', 'no', 9, '', '#3399ff', '#64b2ff', '#ffa500', '#64b2ff', 'white', 'black', '', '', '', '', '', '', '', '', '', '', '', '', '', 'no', 'no', 'no', 'no', 100, '', 'https://www.paypal.com/cgi-bin/webscrcmd_s-xclickhosted_button_id4JGTFVZMJHM66sourceurl', '', '', '', 'yes', 'yes', 'email@free.com');
+(77, 'yes', '', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'v1.0', '2020-05-01 16:18:33', '', 'no', 'no', 'no', 'no', 'no', 'no', '', '', '', '', '', '', '', '', '', '2020,04,11', 'until', 'yes', 86400, 300, 180, 86400, 'no', '14', 'no', 'no', 'no', 'protonmail.com/tutanota.com/posteo.de/mailfence.com/startmail.com/mailbox.org', 'no', 'yes', 'no', 1000, 'no', '', 'no', 9, '', '#3399ff', '#64b2ff', '#ffa500', '#64b2ff', 'white', 'black', '', '', '', '', '', '', '', '', '', '', '', '', '', 'no', 'no', 'no', 'no', 100, '', '', '', '', '', 'yes', 'yes', '');
 
 -- --------------------------------------------------------
 
